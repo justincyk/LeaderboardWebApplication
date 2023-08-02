@@ -9,6 +9,22 @@ export const MockUsers = [
     wins: 20,
     loses: 1,
     rank: 1,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 2,
@@ -18,6 +34,22 @@ export const MockUsers = [
     wins: 19,
     loses: 2,
     rank: 2,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "two",
+        player2: "three",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "two",
+        player2: "four",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 3,
@@ -27,6 +59,22 @@ export const MockUsers = [
     wins: 18,
     loses: 3,
     rank: 3,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 4,
@@ -36,6 +84,22 @@ export const MockUsers = [
     wins: 17,
     loses: 4,
     rank: 4,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 5,
@@ -45,6 +109,22 @@ export const MockUsers = [
     wins: 16,
     loses: 5,
     rank: 5,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 6,
@@ -54,15 +134,47 @@ export const MockUsers = [
     wins: 15,
     loses: 6,
     rank: 6,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 7,
-    name: "Annaand",
+    name: "Aanand",
     nickname: "sev",
     password: "1",
     wins: 14,
     loses: 7,
     rank: 7,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 8,
@@ -72,6 +184,22 @@ export const MockUsers = [
     wins: 13,
     loses: 8,
     rank: 8,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 9,
@@ -81,6 +209,22 @@ export const MockUsers = [
     wins: 12,
     loses: 9,
     rank: 9,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 10,
@@ -90,6 +234,22 @@ export const MockUsers = [
     wins: 11,
     loses: 10,
     rank: 10,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 11,
@@ -99,6 +259,22 @@ export const MockUsers = [
     wins: 10,
     loses: 11,
     rank: 11,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
   new User({
     id: 12,
@@ -108,5 +284,21 @@ export const MockUsers = [
     wins: 9,
     loses: 12,
     rank: 12,
+    history: [
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "two",
+        matchId: 1,
+        result: "won",
+      },
+      {
+        matchDate: new Date(),
+        player1: "one",
+        player2: "three",
+        matchId: 1,
+        result: "loss",
+      },
+    ],
   }),
 ];

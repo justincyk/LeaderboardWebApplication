@@ -1,36 +1,42 @@
-// import * as React from "react";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
+import React, { useState } from "react";
 // import ImageIcon from "@mui/icons-material/Image";
 import { User } from "../User/User.ts";
-import { ListItemButton } from "@mui/material";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
+import IconButton from "@mui/material/IconButton";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Collapse from "@mui/material/Collapse";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableHead from "@mui/material/TableHead";
 
 interface Column {
   id: "rank" | "name" | "wins" | "loses";
   label: string;
   minWidth?: number;
-  align?: "right";
+  align?: string | "center";
   format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: "rank", label: "Rank" },
-  { id: "name", label: "Name" },
+  { id: "rank", label: "Rank", align: "center", minWidth: 50 },
+  { id: "name", label: "Name", minWidth: 100, align: "center" },
   {
     id: "wins",
     label: "Wins",
-    align: "right",
+    align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
+    minWidth: 75,
   },
   {
     id: "loses",
     label: "Loses",
-    align: "right",
+    align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
+    minWidth: 75,
   },
 ];
 
@@ -39,34 +45,65 @@ interface LeaderPlayerProp {
 }
 
 const LeaderRow = ({ user }: LeaderPlayerProp) => {
+  const [open, setOpen] = useState(false);
   return (
-    // <ListItemButton sx={{ border: "1px solid red", padding: "10px 10px" }}>
-    //   <ListItemAvatar>
-    //     <Avatar>
-    //       <h3>{rank}</h3>
-    //       {/*<ImageIcon />*/}
-    //     </Avatar>
-    //   </ListItemAvatar>
-    //
-    //   <ListItemText
-    //     primary={user.name}
-    //     secondary={user.created.toDateString()}
-    //   />
-    //   <ListItemText primary={10} />
-    //   <ListItemText primary={12} />
-    // </ListItemButton>
-    <TableRow hover role="checkbox" tabIndex={-1} key={user.id}>
-      {columns.map((column) => {
-        const value = user[column.id];
-        return (
-          <TableCell key={column.id} align={"center"}>
-            {column.format && typeof value === "number"
-              ? column.format(value)
-              : value}
-          </TableCell>
-        );
-      })}
-    </TableRow>
+    <React.Fragment>
+      <TableRow hover role="checkbox" tabIndex={-1}>
+        <TableCell sx={{ width: "20px" }}>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+
+        {columns.map((column) => {
+          const value = user[column.id];
+          return (
+            <TableCell key={column.id} align="center">
+              {column.format && typeof value === "number"
+                ? column.format(value)
+                : value}
+            </TableCell>
+          );
+        })}
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
+                Most Recent Match History
+              </Typography>
+              <Table size="small" aria-label="matchHistory">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align={"center"}>Date</TableCell>
+                    <TableCell align={"center"}>Player 1</TableCell>
+                    <TableCell align="center">Player 2</TableCell>
+                    <TableCell align="center">Result</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {user.history.map((historyRow) => (
+                    <TableRow key={historyRow.matchId}>
+                      <TableCell align={"center"}>
+                        {historyRow.matchDate.toLocaleDateString()}
+                      </TableCell>
+                      <TableCell align="center">{historyRow.player1}</TableCell>
+                      <TableCell align="center">{historyRow.player2}</TableCell>
+                      <TableCell align="center">{historyRow.result}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
   );
 };
 

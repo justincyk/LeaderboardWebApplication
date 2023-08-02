@@ -1,6 +1,4 @@
 import React from "react";
-// import List from "@mui/material/List";
-// import LeaderRow from "./LeaderRow.tsx";
 import { User } from "../User/User.ts";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -23,33 +21,35 @@ interface Column {
   id: "rank" | "name" | "wins" | "loses";
   label: string;
   minWidth?: number;
-  align?: "right";
+  align?: string;
   format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: "rank", label: "Rank" },
-  { id: "name", label: "Name" },
+  { id: "rank", label: "Rank", align: "center", minWidth: 50 },
+  { id: "name", label: "Name", minWidth: 100, align: "center" },
   {
     id: "wins",
     label: "Wins",
-    align: "right",
+    align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
+    minWidth: 75,
   },
   {
     id: "loses",
     label: "Loses",
-    align: "right",
+    align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
+    minWidth: 75,
   },
 ];
-
-interface Data {
-  rank: number;
-  name: string;
-  wins: number;
-  loses: number;
-}
+//
+// interface Data {
+//   rank: number;
+//   name: string;
+//   wins: number;
+//   loses: number;
+// }
 
 const LeaderTable = ({ users }: LeaderListProps) => {
   // const items: any = users.map((user, index: number) => {
@@ -58,6 +58,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -76,7 +77,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
       alignItems={"center"}
       sx={{ minWidth: "70vw", paddingTop: "20px" }}
     >
-      <Paper sx={{ width: "70%" }}>
+      <Paper sx={{ width: "50%" }}>
         <TableContainer sx={{ maxHeight: 720 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -86,11 +87,16 @@ const LeaderTable = ({ users }: LeaderListProps) => {
                 </TableCell>
               </TableRow>
               <TableRow>
+                <TableCell
+                  align="center"
+                  key="blankSpace"
+                  style={{ top: 57, width: "10px" }}
+                ></TableCell>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align="center"
-                    style={{ top: 57, minWidth: column.minWidth }}
+                    style={{ top: 57, width: column.minWidth }}
                   >
                     <h3>{column.label}</h3>
                   </TableCell>
@@ -101,7 +107,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
               {users
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((user) => (
-                  <LeaderRow user={user} />
+                  <LeaderRow user={user} key={user.id} />
                 ))}
             </TableBody>
           </Table>
@@ -116,21 +122,6 @@ const LeaderTable = ({ users }: LeaderListProps) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      {/*<h1 style={{ paddingTop: "50px" }}>*/}
-      {/*  LeaderBoard <EmojiEventsIcon />*/}
-      {/*</h1>*/}
-      {/*<List*/}
-      {/*  sx={{*/}
-      {/*    width: "100%",*/}
-      {/*    maxWidth: "50vw",*/}
-      {/*    bgcolor: "background.paper",*/}
-      {/*    overflow: "auto",*/}
-      {/*    margin: "auto auto",*/}
-      {/*    maxHeight: "50vh",*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  {items}*/}
-      {/*</List>*/}
     </Box>
   );
 };
