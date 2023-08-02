@@ -1,1 +1,1 @@
-# CapstonePingpong
+# Capstone Pingpong Leaderboard App
