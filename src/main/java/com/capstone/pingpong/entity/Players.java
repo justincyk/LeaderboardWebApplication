@@ -2,34 +2,56 @@ package com.capstone.pingpong.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 @Entity
 @Table(name = "players")
 public class Players {
 
+    //    @ManyToMany
+//    @JoinTable(
+//            name = "matchLoser",
+//            joinColumns = @JoinColumn(name = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "loserId")
+//    )
+//    Set<Matches> loser;
+//
+//    @ManyToMany
+//    @JoinTable(
+//            name = "matchWinner",
+//            joinColumns = @JoinColumn(name = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "winnerId")
+//    )
+//    Set<Matches> winner;
+
+    //    Date Formatter
+    static DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     // define fields
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
-
     @Column(name = "nickname")
     private String nickname;
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "created_at")
-    private String created;
-
+    private LocalDateTime created;
     @Column(name = "wins")
-    private Integer wins;
-
+    private int wins;
     @Column(name = "loses")
-    private Integer loses;
+    private int loses;
+    //    Define relationships
+    @OneToMany(mappedBy = "winner")
+    private List<Matches> wonMatches;
+    @OneToMany(mappedBy = "loser")
+    private List<Matches> lostMatches;
+
 
     // define constructors
     public Players() {
@@ -43,7 +65,6 @@ public class Players {
         this.wins = 0;
         this.loses = 0;
     }
-
 
     // define getter/setter
     public String getId() {
@@ -74,20 +95,24 @@ public class Players {
         this.nickname = nickname;
     }
 
-    public Integer getWins() {
+    public int getWins() {
         return wins;
     }
 
-    public void setWins(Integer wins) {
+    public void setWins(int wins) {
         this.wins = wins;
     }
 
-    public Integer getLoses() {
+    public int getLoses() {
         return loses;
     }
 
-    public void setLoses(Integer loses) {
+    public void setLoses(int loses) {
         this.loses = loses;
+    }
+
+    public String getCreated() {
+        return created.format(CUSTOM_FORMATTER);
     }
 
     // define toString
