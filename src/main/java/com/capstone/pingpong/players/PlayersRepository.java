@@ -1,10 +1,12 @@
-package com.capstone.pingpong.dao;
+package com.capstone.pingpong.players;
 
-import com.capstone.pingpong.entity.Players;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.Optional;
+
 
 @RepositoryRestResource(collectionResourceRel = "players", path = "players")
-public interface PlayerRepository extends JpaRepository<Players, String> {
+public interface PlayersRepository extends JpaRepository<Players, String> {
+    public Optional<Players> findByNickname(String nickname);
 }

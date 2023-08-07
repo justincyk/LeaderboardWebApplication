@@ -14,7 +14,7 @@ import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 
 interface Column {
-  id: "rank" | "name" | "wins" | "loses";
+  id: "rank" | "nickname" | "wins" | "loses";
   label: string;
   minWidth?: number;
   align?: string | "center";
@@ -23,7 +23,7 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: "rank", label: "Rank", align: "center", minWidth: 50 },
-  { id: "name", label: "Name", minWidth: 100, align: "center" },
+  { id: "nickname", label: "Player", minWidth: 100, align: "center" },
   {
     id: "wins",
     label: "Wins",
@@ -61,6 +61,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
 
         {columns.map((column) => {
           const value = user[column.id];
+          console.log(value);
           return (
             <TableCell key={column.id} align="center">
               {column.format && typeof value === "number"
@@ -81,9 +82,8 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                 <TableHead>
                   <TableRow>
                     <TableCell align={"center"}>Date</TableCell>
-                    <TableCell align={"center"}>Player 1</TableCell>
-                    <TableCell align="center">Player 2</TableCell>
-                    <TableCell align="center">Result</TableCell>
+                    <TableCell align={"center"}>Winner</TableCell>
+                    <TableCell align="center">Loser</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -92,9 +92,8 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                       <TableCell align={"center"}>
                         {historyRow.matchDate.toLocaleDateString()}
                       </TableCell>
-                      <TableCell align="center">{historyRow.player1}</TableCell>
-                      <TableCell align="center">{historyRow.player2}</TableCell>
-                      <TableCell align="center">{historyRow.result}</TableCell>
+                      <TableCell align="center">{historyRow.winner}</TableCell>
+                      <TableCell align="center">{historyRow.loser}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

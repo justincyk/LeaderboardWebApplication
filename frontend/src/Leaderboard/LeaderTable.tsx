@@ -18,7 +18,7 @@ interface LeaderListProps {
 }
 
 interface Column {
-  id: "rank" | "name" | "wins" | "loses";
+  id: "rank" | "nickname" | "wins" | "loses";
   label: string;
   minWidth?: number;
   align?: string;
@@ -27,7 +27,7 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: "rank", label: "Rank", align: "center", minWidth: 50 },
-  { id: "name", label: "Name", minWidth: 100, align: "center" },
+  { id: "nickname", label: "Player", minWidth: 100, align: "center" },
   {
     id: "wins",
     label: "Wins",

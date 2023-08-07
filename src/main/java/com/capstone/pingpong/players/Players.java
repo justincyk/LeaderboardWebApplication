@@ -1,5 +1,6 @@
-package com.capstone.pingpong.entity;
+package com.capstone.pingpong.players;
 
+import com.capstone.pingpong.matches.Matches;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -46,6 +47,10 @@ public class Players {
     private int wins;
     @Column(name = "loses")
     private int loses;
+
+    @Column(name = "elo")
+    private int elo;
+
     //    Define relationships
     @OneToMany(mappedBy = "winner")
     private List<Matches> wonMatches;
@@ -111,8 +116,24 @@ public class Players {
         this.loses = loses;
     }
 
-    public String getCreated() {
-        return created.format(CUSTOM_FORMATTER);
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void incrementWins() {
+        this.wins++;
+    }
+
+    public void incrementLoses() {
+        this.loses++;
+    }
+
+    public int getElo() {
+        return elo;
+    }
+
+    public void setElo(int elo) {
+        this.elo = elo;
     }
 
     // define toString

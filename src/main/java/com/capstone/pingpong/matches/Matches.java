@@ -1,5 +1,6 @@
-package com.capstone.pingpong.entity;
+package com.capstone.pingpong.matches;
 
+import com.capstone.pingpong.players.Players;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -38,6 +39,10 @@ public class Matches {
         this.winner = winner;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Players getLoser() {
         return loser;
     }
@@ -46,17 +51,28 @@ public class Matches {
         return winner;
     }
 
-//    @PostPersist
-//    public void updateWinnerWinsCount() {
+    @Override
+    public String toString() {
+        return "Matches{" +
+                "id=" + id +
+                ", winner='" + winner.getNickname() + '\'' +
+                ", loser='" + loser.getNickname() + '\'' +
+                ", date='" + this.matchDate.toString() + '\'' +
+                '}';
+    }
+
+    public LocalDateTime getMatchDate() {
+        return matchDate;
+    }
+
+    //    @PostPersist
+//    public void updateScoreCount() {
 //        if (winner != null) {
 //            winner.incrementWins();
 //        }
-//    }
-//
-//    @PostPersist
-//    public void updateLooserLosesCount() {
-//        if (winner != null) {
-//            winner.incrementWins();
+//        if (loser != null) {
+//            loser.incrementLoses();
 //        }
 //    }
+
 }
