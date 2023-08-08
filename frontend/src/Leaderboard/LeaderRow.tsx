@@ -87,7 +87,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {user.history.map((historyRow) => (
+                  {user.history.slice(0, 3).map((historyRow) => (
                     <TableRow key={historyRow.matchId}>
                       <TableCell align={"center"}>
                         {historyRow.matchDate}
