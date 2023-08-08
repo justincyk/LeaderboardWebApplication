@@ -55,12 +55,14 @@ public class PlayersService {
                 }
             }
             float currElo = player.getElo();
+            int playerScore = player.getWins() + player.getLoses();
 
-            if (index != 0 && currElo != prevElo) {
+            if (index != 0 && currElo != prevElo && (playerScore != 0)) {
                 ++rank;
             }
             matchList.sort(Comparator.comparing(o -> o.getMatchDate(), Comparator.reverseOrder()));
-            User user = new User(player, rank, matchList);
+
+            User user = playerScore != 0 ? new User(player, rank, matchList) : new User(player, 999999, matchList);
             prevElo = currElo;
             ++index;
             users.add(user);

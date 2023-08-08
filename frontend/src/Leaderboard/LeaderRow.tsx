@@ -61,7 +61,6 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
 
         {columns.map((column) => {
           const value = user[column.id];
-          console.log(value);
           return (
             <TableCell key={column.id} align="center">
               {column.format && typeof value === "number"
@@ -91,14 +90,14 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                   {user.history.map((historyRow) => (
                     <TableRow key={historyRow.matchId}>
                       <TableCell align={"center"}>
-                        {historyRow.matchDate.toLocaleDateString()}
+                        {historyRow.matchDate}
                       </TableCell>
                       <TableCell align="center">{historyRow.winner}</TableCell>
                       <TableCell align="center">{historyRow.loser}</TableCell>
                       <TableCell align="center">
                         {user["nickname"] === historyRow.winner
-                          ? historyRow.winnerEloChange
-                          : historyRow.loserEloChange}
+                          ? historyRow.winnerEloChange.toFixed(3)
+                          : historyRow.loserEloChange.toFixed(3)}
                       </TableCell>
                     </TableRow>
                   ))}

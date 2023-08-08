@@ -42,7 +42,7 @@ public class Players {
     @Column(name = "nickname")
     private String nickname;
     @Column(name = "created_at")
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
     @Column(name = "wins")
     private int wins;
     @Column(name = "loses")
@@ -63,11 +63,12 @@ public class Players {
     }
 
     public Players(String firstName, String lastName, String nickname) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickname = nickname;
+        this.firstName = firstName.toLowerCase();
+        this.lastName = lastName.toLowerCase();
+        this.nickname = nickname.toLowerCase();
         this.wins = 0;
         this.loses = 0;
+        this.created = LocalDateTime.now();
     }
 
     // define getter/setter

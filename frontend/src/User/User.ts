@@ -1,10 +1,10 @@
 export interface userHistory {
-  matchDate: Date;
+  matchDate: string;
   winner: string;
   loser: string;
-  matchId: number;
   winnerEloChange: number;
   loserEloChange: number;
+  matchId: number;
 }
 
 export class User {
@@ -17,6 +17,7 @@ export class User {
   wins: number = 0;
   loses: number = 0;
   rank: number | undefined;
+  elo: number | undefined;
   history: userHistory[] = [];
 
   constructor(initializer?: any) {
@@ -30,6 +31,7 @@ export class User {
     if (initializer.loses) this.loses = initializer.loses;
     if (initializer.id) this.rank = initializer.rank;
     if (initializer.history) this.history = initializer.history;
+    if (initializer.elo) this.elo = initializer.elo;
   }
 
   get isNew(): boolean {

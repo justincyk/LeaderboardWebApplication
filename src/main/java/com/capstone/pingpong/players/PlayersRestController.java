@@ -1,10 +1,7 @@
 package com.capstone.pingpong.players;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,5 +47,17 @@ public class PlayersRestController {
     public List<User> retrievePlayerByNickname() {
         return playersService.getPlayers();
     }
-    
+
+    @PostMapping("/players")
+    public Players createPlayer(@RequestBody Players players) {
+        players.setNickname(players.getNickname().toLowerCase());
+        players.setFirstName(players.getFirstName().toLowerCase());
+        players.setLastName(players.getLastName().toLowerCase());
+        if (playersRepository.findByNickname(players.getNickname()).isPresent()) {
+            throw new RuntimeException("Player with that nickname already exists - " + players.getNickname());
+        }
+        players.setElo(400);
+        return playersRepository.save(players);
+    }
+
 }

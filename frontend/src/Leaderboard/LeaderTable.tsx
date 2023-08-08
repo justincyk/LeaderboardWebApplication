@@ -105,6 +105,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
             </TableHead>
             <TableBody>
               {users
+                .filter((user) => user.wins + user.loses != 0)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((user) => (
                   <LeaderRow user={user} key={user.id} />

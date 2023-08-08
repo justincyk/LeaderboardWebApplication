@@ -6,6 +6,7 @@ import com.capstone.pingpong.players.Players;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -22,6 +23,7 @@ public class MatchesService {
         this.matchesRepository = matchesRepository;
     }
 
+    @Transactional
     public Matches saveMatch(Matches newMatch) {
         Matches dbMatches = matchesRepository.save(newMatch);
         Players winner = newMatch.getWinner();
@@ -34,6 +36,7 @@ public class MatchesService {
         return dbMatches;
     }
 
+    @Transactional
     public Matches saveMatch(String winnerNickname, String loserNickname) {
         Players winner = playersRepository.findByNickname(winnerNickname).orElseThrow(() -> new IllegalArgumentException("Winner with nickname '" + winnerNickname + "' not found"));
         Players loser = playersRepository.findByNickname(loserNickname).orElseThrow(() -> new IllegalArgumentException("Loser with nickname '" + loserNickname + "' not found"));
