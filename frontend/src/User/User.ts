@@ -3,6 +3,8 @@ export interface userHistory {
   winner: string;
   loser: string;
   matchId: number;
+  winnerEloChange: number;
+  loserEloChange: number;
 }
 
 export class User {

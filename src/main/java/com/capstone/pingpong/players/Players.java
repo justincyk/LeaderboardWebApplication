@@ -47,9 +47,8 @@ public class Players {
     private int wins;
     @Column(name = "loses")
     private int loses;
-
     @Column(name = "elo")
-    private int elo;
+    private float elo;
 
     //    Define relationships
     @OneToMany(mappedBy = "winner")
@@ -128,24 +127,28 @@ public class Players {
         this.loses++;
     }
 
-    public int getElo() {
+    public float getElo() {
         return elo;
     }
 
-    public void setElo(int elo) {
+    public void setElo(float elo) {
         this.elo = elo;
     }
 
     // define toString
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
+        return "Players{" +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", wins='" + wins + '\'' +
-                ", loses='" + loses + '\'' +
+                ", created=" + created +
+                ", wins=" + wins +
+                ", loses=" + loses +
+                ", elo=" + elo +
+                ", wonMatches=" + wonMatches +
+                ", lostMatches=" + lostMatches +
                 '}';
     }
 }

@@ -8,13 +8,18 @@ public class History {
     LocalDateTime matchDate;
     String winner;
     String loser;
+    float winnerEloChange;
+    float loserEloChange;
     int matchId;
 
-    public History(int matchId, String winner, String loser, LocalDateTime matchDate) {
+
+    public History(int matchId, String winner, String loser, LocalDateTime matchDate, float winnerEloChange, float loserEloChange) {
         this.matchId = matchId;
         this.winner = winner;
         this.loser = loser;
         this.matchDate = matchDate;
+        this.winnerEloChange = winnerEloChange;
+        this.loserEloChange = loserEloChange;
     }
 
     public String getMatchDate() {
@@ -47,5 +52,25 @@ public class History {
 
     public void setMatchId(int matchId) {
         this.matchId = matchId;
+    }
+
+    public float getWinnerEloChange() {
+        return winnerEloChange;
+    }
+
+    public float getLoserEloChange() {
+        return loserEloChange;
+    }
+
+    @Override
+    public String toString() {
+        return "History{" +
+                "matchDate=" + matchDate +
+                ", winner='" + winner + '\'' +
+                ", loser='" + loser + '\'' +
+                ", winnerEloChange=" + winnerEloChange +
+                ", loserEloChange=" + loserEloChange +
+                ", matchId=" + matchId +
+                '}';
     }
 }

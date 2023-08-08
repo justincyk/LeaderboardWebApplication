@@ -83,7 +83,8 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                   <TableRow>
                     <TableCell align={"center"}>Date</TableCell>
                     <TableCell align={"center"}>Winner</TableCell>
-                    <TableCell align="center">Loser</TableCell>
+                    <TableCell align={"center"}>Loser</TableCell>
+                    <TableCell align={"center"}>Player Elo Change</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -94,6 +95,11 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                       </TableCell>
                       <TableCell align="center">{historyRow.winner}</TableCell>
                       <TableCell align="center">{historyRow.loser}</TableCell>
+                      <TableCell align="center">
+                        {user["nickname"] === historyRow.winner
+                          ? historyRow.winnerEloChange
+                          : historyRow.loserEloChange}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

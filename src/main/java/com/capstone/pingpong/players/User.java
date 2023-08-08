@@ -17,10 +17,11 @@ public class User {
     private int wins;
     private int loses;
     private int rank;
+    private float elo;
     private List<History> history;
 
 
-    public User(String id, String firstName, String lastName, String nickname, LocalDateTime date, int wins, int loses, int rank, List<History> history) {
+    public User(String id, String firstName, String lastName, String nickname, LocalDateTime date, int wins, int loses, float elo, int rank, List<History> history) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +29,7 @@ public class User {
         this.created = date;
         this.wins = wins;
         this.loses = loses;
+        this.elo = elo;
         this.rank = rank;
         this.history = history;
     }
@@ -40,6 +42,7 @@ public class User {
         this.created = player.getCreated();
         this.wins = player.getWins();
         this.loses = player.getLoses();
+        this.elo = player.getElo();
         this.rank = rank;
         this.history = history;
     }
@@ -114,5 +117,9 @@ public class User {
 
     public void setHistory(List<History> history) {
         this.history = history;
+    }
+
+    public float getElo() {
+        return elo;
     }
 }

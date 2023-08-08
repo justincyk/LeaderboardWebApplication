@@ -17,7 +17,7 @@ public class EloRating {
     // K is a constant.
     // d determines whether Player A wins
     // or Player B.
-    static HashMap<String, Float> updateEloRating(String player1, String player2, float player1Rank, float player2Rank,
+    public HashMap<String, Float> updateEloRating(String player1, String player2, float player1Rank, float player2Rank,
                                                   boolean d) {
         HashMap<String, Float> newRankings = new HashMap<>();
 
@@ -41,6 +41,13 @@ public class EloRating {
         else {
             player1Rank = player1Rank + 30 * (0 - Pa);
             player2Rank = player2Rank + 30 * (1 - Pb);
+        }
+
+        if (player1Rank < 0) {
+            player1Rank = 0;
+        }
+        if (player2Rank < 0) {
+            player2Rank = 0;
         }
 
         newRankings.put(player1, player1Rank);

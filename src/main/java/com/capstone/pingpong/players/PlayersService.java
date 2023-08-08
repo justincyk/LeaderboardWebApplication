@@ -28,7 +28,7 @@ public class PlayersService {
 
     public List<User> getPlayers() {
         List<Players> playersList = (ArrayList<Players>) playersRepository.findAll();
-        playersList.sort(Comparator.comparing(o -> o.getElo()));
+        playersList.sort(Comparator.comparing(o -> o.getElo(), Comparator.reverseOrder()));
         List<Matches> matchesList = (ArrayList<Matches>) matchesRepository.findAll();
 
         int rank = 1;
@@ -37,15 +37,20 @@ public class PlayersService {
 
         List<User> users = new ArrayList<>();
         for (Players player : playersList) {
+
             List<History> matchList = new ArrayList<>();
             for (Matches match : matchesList) {
                 String winner = match.getWinner().getNickname();
+                float winnerEloChange = match.getWinnerEloChange();
+
                 String loser = match.getLoser().getNickname();
+                float loserEloChange = match.getLoserEloChange();
+
                 int gameId = match.getId();
                 LocalDateTime matchDate = match.getMatchDate();
 
                 if (match.getWinner() == player || match.getLoser() == player) {
-                    History history = new History(gameId, winner, loser, matchDate);
+                    History history = new History(gameId, winner, loser, matchDate, winnerEloChange, loserEloChange);
                     matchList.add(history);
                 }
             }
@@ -54,6 +59,7 @@ public class PlayersService {
             if (index != 0 && currElo != prevElo) {
                 ++rank;
             }
+            matchList.sort(Comparator.comparing(o -> o.getMatchDate(), Comparator.reverseOrder()));
             User user = new User(player, rank, matchList);
             prevElo = currElo;
             ++index;
