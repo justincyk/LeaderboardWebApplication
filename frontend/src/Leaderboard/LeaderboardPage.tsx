@@ -8,10 +8,11 @@ import { userAPI } from "../API/userApi.ts";
 import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
 import AddPlayer from "../Features/AddPlayer.tsx";
 import Typography from "@mui/material/Typography";
+import AddMatch from "../Features/AddMatch.tsx";
 
 const LeaderboardPage = () => {
   const containerStyle: React.CSSProperties = {
-    backgroundImage: `url("../images/background.jpeg")`,
+    backgroundImage: `url("../images/leaderboardBackground.gif")`,
     // backgroundColor: "black",
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -35,6 +36,14 @@ const LeaderboardPage = () => {
   };
   const handleAddPlayerOpen = () => {
     setOpenAddPlayer(true);
+  };
+
+  const [openAddMatch, setOpenAddMatch] = useState<boolean>(false);
+  const handleAddMatchClose = () => {
+    setOpenAddMatch(false);
+  };
+  const handleAddMatchOpen = () => {
+    setOpenAddMatch(true);
   };
 
   // @ts-ignore
@@ -66,16 +75,20 @@ const LeaderboardPage = () => {
         openAddPlayer={openAddPlayer}
         handleAddPlayerClose={handleAddPlayerClose}
       />
+      <AddMatch
+        openAddMatch={openAddMatch}
+        handleAddMatchClose={handleAddMatchClose}
+      />
       <TemporaryDrawer
-        handleAddPlayerClose={handleAddPlayerClose}
         openAddPlayer={openAddPlayer}
         handleAddPlayerOpen={handleAddPlayerOpen}
+        handleAddMatchOpen={handleAddMatchOpen}
       />
       <Typography
         variant={"h1"}
         align={"center"}
-        color={"white"}
-        sx={{ paddingTop: "20px" }}
+        color={"#c026d3"}
+        sx={{ paddingTop: "20px", fontFamily: "Georgia" }}
       >
         Leaderboard
       </Typography>

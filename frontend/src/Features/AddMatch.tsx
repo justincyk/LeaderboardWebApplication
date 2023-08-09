@@ -4,9 +4,9 @@ import { Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-interface AddPlayerProps {
-  openAddPlayer: boolean;
-  handleAddPlayerClose: () => void;
+interface AddMatchProps {
+  openAddMatch: boolean;
+  handleAddMatchClose: () => void;
 }
 
 const style = {
@@ -19,17 +19,17 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  backgroundImage: `url("../images/guyPingpong.gif")`,
+  backgroundImage: `url("../images/pingpong.gif")`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   color: "white",
 };
 
-const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
+const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
   return (
     <Modal
-      open={openAddPlayer}
-      onClose={handleAddPlayerClose}
+      open={openAddMatch}
+      onClose={handleAddMatchClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -41,7 +41,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
           align={"center"}
           sx={{ borderBottom: 1 }}
         >
-          Add New Player
+          Add New Match
         </Typography>
         <form
           className="input-group vertical"
@@ -65,11 +65,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               width: "50%",
             }}
           >
-            <label htmlFor="firstName">Username</label>
+            <label htmlFor="winner">Winner</label>
             <input
               type="text"
-              name="userName"
-              placeholder="Enter Username"
+              name="winner"
+              placeholder="Enter Winner"
               style={{ width: "100%" }}
             />
           </div>
@@ -82,28 +82,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               width: "50%",
             }}
           >
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="loser">Loser</label>
             <input
               type="text"
-              name="firstName"
-              placeholder="Enter First Name"
-              style={{ width: "100%" }}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "3px",
-              width: "50%",
-            }}
-          >
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Enter Last Name"
+              name="looser"
+              placeholder="Enter Loser"
               style={{ width: "100%" }}
             />
           </div>
@@ -121,4 +104,4 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
   );
 };
 
-export default AddPlayer;
+export default AddMatch;

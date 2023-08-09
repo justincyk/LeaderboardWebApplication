@@ -50,12 +50,13 @@ type Anchor = "right";
 
 interface TemporaryDrawerProps {
   openAddPlayer: boolean;
-  handleAddPlayerClose: () => void;
   handleAddPlayerOpen: () => void;
+  handleAddMatchOpen: () => void;
 }
 
 export default function TemporaryDrawer({
   handleAddPlayerOpen,
+  handleAddMatchOpen,
 }: TemporaryDrawerProps) {
   const [state, setState] = React.useState({
     right: false,
@@ -85,7 +86,7 @@ export default function TemporaryDrawer({
         <ListItem
           key={"Add Player"}
           onClick={handleAddPlayerOpen}
-          sx={{ borderBottom: 1, borderTop: 1 }}
+          sx={{ borderBottom: 1, borderTop: 1, fontFamily: "Georgia" }}
         >
           <ListItemButton>
             <ListItemIcon>
@@ -95,7 +96,11 @@ export default function TemporaryDrawer({
           </ListItemButton>
         </ListItem>
 
-        <ListItem key={"Add Match"} sx={{ borderBottom: 1 }}>
+        <ListItem
+          key={"Add Match"}
+          onClick={handleAddMatchOpen}
+          sx={{ borderBottom: 1, fontFamily: "Georgia" }}
+        >
           <ListItemButton>
             <ListItemIcon>
               <VideogameAssetIcon />
@@ -119,8 +124,10 @@ export default function TemporaryDrawer({
               size="large"
               sx={{
                 position: "fixed",
-                top: "5px",
-                left: "5px",
+                top: "25px",
+                right: "25px",
+                color: "white",
+                fontSize: "25px",
               }}
             >
               Menu
