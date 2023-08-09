@@ -73,12 +73,12 @@ const LeaderTable = ({ users }: LeaderListProps) => {
     <Box
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"center"}
+      justifyContent={"flex-start"}
       alignItems={"center"}
-      sx={{ minWidth: "70vw", paddingTop: "20px" }}
+      sx={{ minWidth: "70vw", paddingTop: "40px" }}
     >
       <Paper sx={{ width: "50%" }}>
-        <TableContainer sx={{ maxHeight: 720 }}>
+        <TableContainer sx={{ maxHeight: 900 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
