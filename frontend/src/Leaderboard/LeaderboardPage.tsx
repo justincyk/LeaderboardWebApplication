@@ -88,7 +88,7 @@ const LeaderboardPage = () => {
         variant={"h1"}
         align={"center"}
         color={"#c026d3"}
-        sx={{ paddingTop: "20px", fontFamily: "Georgia" }}
+        sx={{ paddingTop: "20px", fontFamily: "AtariFont", fontSize: "4rem" }}
       >
         Leaderboard
       </Typography>

@@ -7,17 +7,17 @@ import LeaderboardPage from "./Leaderboard/LeaderboardPage.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-    // const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
-    return (
-        <BrowserRouter>
-            <div className="containers">
-                <Routes>
-                    <Route path="/" element={<LeaderboardPage />} />.
-                </Routes>
-            </div>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <div className="containers App">
+        <Routes>
+          <Route path="/" element={<LeaderboardPage />} />.
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -6,7 +6,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import { createTheme, PaletteColorOptions, ThemeProvider } from "@mui/material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -86,26 +85,26 @@ export default function TemporaryDrawer({
         <ListItem
           key={"Add Player"}
           onClick={handleAddPlayerOpen}
-          sx={{ borderBottom: 1, borderTop: 1, fontFamily: "Georgia" }}
+          sx={{ borderBottom: 1, borderTop: 1, fontFamily: "AtariFont" }}
         >
           <ListItemButton>
             <ListItemIcon>
               <PersonAddIcon />
             </ListItemIcon>
-            <ListItemText primary={"Add Player"} />
+            Add Player
           </ListItemButton>
         </ListItem>
 
         <ListItem
           key={"Add Match"}
           onClick={handleAddMatchOpen}
-          sx={{ borderBottom: 1, fontFamily: "Georgia" }}
+          sx={{ borderBottom: 1, fontFamily: "AtariFont" }}
         >
           <ListItemButton>
             <ListItemIcon>
               <VideogameAssetIcon />
             </ListItemIcon>
-            <ListItemText primary={"Add Match"} />
+            Add Match
           </ListItemButton>
         </ListItem>
       </List>
@@ -127,7 +126,8 @@ export default function TemporaryDrawer({
                 top: "25px",
                 right: "25px",
                 color: "white",
-                fontSize: "25px",
+                fontSize: "1.5rem",
+                fontFamily: "AtariFont",
               }}
             >
               Menu

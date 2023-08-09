@@ -3,6 +3,7 @@ import React from "react";
 import { Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 interface AddMatchProps {
   openAddMatch: boolean;
@@ -11,10 +12,10 @@ interface AddMatchProps {
 
 const style = {
   position: "absolute" as "absolute",
-  top: "25%",
+  top: "35%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  width: "50vw",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -23,6 +24,8 @@ const style = {
   backgroundSize: "cover",
   backgroundPosition: "center",
   color: "white",
+  fontSize: "1.2rem",
+  fontFamily: "AtariFont",
 };
 
 const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
@@ -39,7 +42,12 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
           variant="h5"
           component="h1"
           align={"center"}
-          sx={{ borderBottom: 1 }}
+          sx={{
+            borderBottom: 1,
+            fontSize: "2.5rem",
+            color: "#2563eb",
+            fontFamily: "AtariFont",
+          }}
         >
           Add New Match
         </Typography>
@@ -51,9 +59,9 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             gap: "15px",
-            paddingTop: "10px",
-            paddingLeft: "20px",
-            fontSize: "20px",
+            paddingTop: "1.5rem",
+            paddingLeft: "2rem",
+            fontSize: "1.7rem",
             width: "100%",
           }}
         >
@@ -61,7 +69,7 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "3px",
+              gap: "0.2rem",
               width: "50%",
             }}
           >
@@ -70,7 +78,7 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
               type="text"
               name="winner"
               placeholder="Enter Winner"
-              style={{ width: "100%" }}
+              style={{ width: "100%", fontSize: "1.3rem" }}
             />
           </div>
 
@@ -78,25 +86,35 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "3px",
+              gap: "0.2rem",
               width: "50%",
             }}
           >
             <label htmlFor="loser">Loser</label>
             <input
               type="text"
-              name="looser"
+              name="loser"
               placeholder="Enter Loser"
-              style={{ width: "100%" }}
+              style={{ width: "100%", fontSize: "1.3rem" }}
             />
           </div>
 
           <div className="input-group">
-            <button className="primary bordered medium">Save</button>
+            <Button
+              type="button"
+              sx={{ fontSize: "1.3rem", color: "white" }}
+              variant={"outlined"}
+            >
+              Save
+            </Button>
             <span> </span>
-            <button type="button" className="bordered medium">
+            <Button
+              type="button"
+              sx={{ fontSize: "1.3rem", color: "white" }}
+              variant={"outlined"}
+            >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </Box>

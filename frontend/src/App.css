@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'AtariFont';
+    src: url('../public/fonts/AtariClassic-gry3.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
