@@ -85,7 +85,7 @@ export default function TemporaryDrawer({
         <ListItem
           key={"Add Player"}
           onClick={handleAddPlayerOpen}
-          sx={{ borderBottom: 1 }}
+          sx={{ borderBottom: 1, borderTop: 1 }}
         >
           <ListItemButton>
             <ListItemIcon>
@@ -117,6 +117,11 @@ export default function TemporaryDrawer({
               variant={"outlined"}
               color="steelBlue"
               size="large"
+              sx={{
+                position: "fixed",
+                top: "5px",
+                left: "5px",
+              }}
             >
               Menu
             </Button>

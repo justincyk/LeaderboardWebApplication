@@ -7,6 +7,7 @@ import { MockUsers } from "../MockData/MockUsers.ts";
 import { userAPI } from "../API/userApi.ts";
 import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
 import AddPlayer from "../Features/AddPlayer.tsx";
+import Typography from "@mui/material/Typography";
 
 const LeaderboardPage = () => {
   const containerStyle: React.CSSProperties = {
@@ -70,6 +71,14 @@ const LeaderboardPage = () => {
         openAddPlayer={openAddPlayer}
         handleAddPlayerOpen={handleAddPlayerOpen}
       />
+      <Typography
+        variant={"h1"}
+        align={"center"}
+        color={"white"}
+        sx={{ paddingTop: "20px" }}
+      >
+        Leaderboard
+      </Typography>
       <LeaderTable users={mockUsers} />
     </Container>
   );

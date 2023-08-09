@@ -67,31 +67,26 @@ const LeaderTable = ({ users }: LeaderListProps) => {
       alignItems={"center"}
       sx={{
         minWidth: "70vw",
-        paddingTop: "30px",
-        paddingBottom: "40px",
-        opacity: "85%",
+        paddingTop: "10px",
+        opacity: "90%",
+        paddingBottom: "50px",
       }}
     >
       <Paper sx={{ width: "60%", border: 3 }}>
-        <TableContainer sx={{ maxHeight: 680 }}>
+        <TableContainer sx={{ maxHeight: 650 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>
-                <TableCell align="center" colSpan={12}>
-                  <h1 style={{ fontSize: "40px" }}>Leaderboard</h1>
-                </TableCell>
-              </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   key="blankSpace"
-                  style={{ top: 73, width: "10px" }}
+                  style={{ top: 0, width: "10px" }}
                 ></TableCell>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align="center"
-                    style={{ top: 73, width: column.minWidth }}
+                    style={{ top: 0, width: column.minWidth }}
                   >
                     <h3>{column.label}</h3>
                   </TableCell>
