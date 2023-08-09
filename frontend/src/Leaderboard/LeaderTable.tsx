@@ -79,7 +79,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
         minWidth: "70vw",
         paddingTop: "30px",
         paddingBottom: "40px",
-        opacity: "90%",
+        opacity: "85%",
       }}
     >
       <Paper sx={{ width: "60%" }}>
