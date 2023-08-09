@@ -9,7 +9,10 @@ import { userAPI } from "../API/userApi.ts";
 const LeaderboardPage = () => {
   // @ts-ignore
   const [users, setUsers] = useState<User[]>([]);
+  // @ts-ignore
   const [players, setPlayers] = useState<User[]>([]);
+  // @ts-ignore
+  const [mockUsers, setMockUsers] = useState<User[]>(MockUsers);
 
   // @ts-ignore
   const [loading, setLoading] = useState(false);
@@ -43,7 +46,7 @@ const LeaderboardPage = () => {
       disableGutters
       style={{ height: "100vh", backgroundColor: "grey" }}
     >
-      <LeaderTable users={players} />
+      <LeaderTable users={mockUsers} />
     </Container>
   );
 };
