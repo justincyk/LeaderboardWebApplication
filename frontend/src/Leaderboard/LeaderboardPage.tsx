@@ -6,8 +6,9 @@ import { User } from "../User/User.ts";
 import { MockUsers } from "../MockData/MockUsers.ts";
 import { userAPI } from "../API/userApi.ts";
 import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
+import AddPlayer from "../Features/AddPlayer.tsx";
 
-const LeaderboardPage: React.FC = () => {
+const LeaderboardPage = () => {
   const containerStyle: React.CSSProperties = {
     backgroundImage: `url("../images/background.jpeg")`,
     // backgroundColor: "black",
@@ -24,9 +25,16 @@ const LeaderboardPage: React.FC = () => {
   const [players, setPlayers] = useState<User[]>([]);
   // @ts-ignore
   const [mockUsers, setMockUsers] = useState<User[]>(MockUsers);
-
   // @ts-ignore
   const [loading, setLoading] = useState(false);
+
+  const [openAddPlayer, setOpenAddPlayer] = useState<boolean>(false);
+  const handleAddPlayerClose = () => {
+    setOpenAddPlayer(false);
+  };
+  const handleAddPlayerOpen = () => {
+    setOpenAddPlayer(true);
+  };
 
   // @ts-ignore
   const [error, setError] = useState<string | undefined>(undefined);
@@ -53,7 +61,15 @@ const LeaderboardPage: React.FC = () => {
 
   return (
     <Container maxWidth={false} disableGutters style={containerStyle}>
-      <TemporaryDrawer />
+      <AddPlayer
+        openAddPlayer={openAddPlayer}
+        handleAddPlayerClose={handleAddPlayerClose}
+      />
+      <TemporaryDrawer
+        handleAddPlayerClose={handleAddPlayerClose}
+        openAddPlayer={openAddPlayer}
+        handleAddPlayerOpen={handleAddPlayerOpen}
+      />
       <LeaderTable users={mockUsers} />
     </Container>
   );

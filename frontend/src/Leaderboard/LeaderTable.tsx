@@ -43,18 +43,8 @@ const columns: readonly Column[] = [
     minWidth: 75,
   },
 ];
-//
-// interface Data {
-//   rank: number;
-//   name: string;
-//   wins: number;
-//   loses: number;
-// }
 
 const LeaderTable = ({ users }: LeaderListProps) => {
-  // const items: any = users.map((user, index: number) => {
-  //   return <LeaderRow user={user} rank={index + 1} key={user.id} />;
-  // });
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -82,26 +72,26 @@ const LeaderTable = ({ users }: LeaderListProps) => {
         opacity: "85%",
       }}
     >
-      <Paper sx={{ width: "60%" }}>
+      <Paper sx={{ width: "60%", border: 3 }}>
         <TableContainer sx={{ maxHeight: 680 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={12}>
-                  <h1>Leaderboard</h1>
+                  <h1 style={{ fontSize: "40px" }}>Leaderboard</h1>
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   key="blankSpace"
-                  style={{ top: 57, width: "10px" }}
+                  style={{ top: 73, width: "10px" }}
                 ></TableCell>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align="center"
-                    style={{ top: 57, width: column.minWidth }}
+                    style={{ top: 73, width: column.minWidth }}
                   >
                     <h3>{column.label}</h3>
                   </TableCell>

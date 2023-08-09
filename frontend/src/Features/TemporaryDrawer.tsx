@@ -48,7 +48,15 @@ const theme = createTheme({
 
 type Anchor = "right";
 
-export default function TemporaryDrawer() {
+interface TemporaryDrawerProps {
+  openAddPlayer: boolean;
+  handleAddPlayerClose: () => void;
+  handleAddPlayerOpen: () => void;
+}
+
+export default function TemporaryDrawer({
+  handleAddPlayerOpen,
+}: TemporaryDrawerProps) {
   const [state, setState] = React.useState({
     right: false,
   });
@@ -72,19 +80,29 @@ export default function TemporaryDrawer() {
       sx={{ width: 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Add Player", "Add Match"].map((text, index) => (
-          <ListItem key={text}>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <PersonAddIcon /> : <VideogameAssetIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem
+          key={"Add Player"}
+          onClick={handleAddPlayerOpen}
+          sx={{ borderBottom: 1 }}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <PersonAddIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Add Player"} />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem key={"Add Match"} sx={{ borderBottom: 1 }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <VideogameAssetIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Add Match"} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -97,7 +115,6 @@ export default function TemporaryDrawer() {
             <Button
               onClick={toggleDrawer(anchor, true)}
               variant={"outlined"}
-              // sx={{ color: "black" }}
               color="steelBlue"
               size="large"
             >
