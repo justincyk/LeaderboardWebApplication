@@ -1,12 +1,23 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import LeaderTable from "./LeaderTable.tsx";
 import { User } from "../User/User.ts";
 // @ts-ignore
 import { MockUsers } from "../MockData/MockUsers.ts";
 import { userAPI } from "../API/userApi.ts";
+import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
 
-const LeaderboardPage = () => {
+const LeaderboardPage: React.FC = () => {
+  const containerStyle: React.CSSProperties = {
+    backgroundImage: `url("../images/background.jpeg")`,
+    // backgroundColor: "black",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+    overflow: "hidden",
+    // Add more styling properties as needed
+  };
+
   // @ts-ignore
   const [users, setUsers] = useState<User[]>([]);
   // @ts-ignore
@@ -41,11 +52,8 @@ const LeaderboardPage = () => {
   }, []);
 
   return (
-    <Container
-      maxWidth={false}
-      disableGutters
-      style={{ height: "100vh", backgroundColor: "grey" }}
-    >
+    <Container maxWidth={false} disableGutters style={containerStyle}>
+      <TemporaryDrawer />
       <LeaderTable users={mockUsers} />
     </Container>
   );
