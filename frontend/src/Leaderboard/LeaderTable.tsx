@@ -73,7 +73,7 @@ const LeaderTable = ({ users }: LeaderListProps) => {
       }}
     >
       <Paper sx={{ width: "60%", border: 3 }}>
-        <TableContainer sx={{ height: "70vh" }}>
+        <TableContainer sx={{ maxHeight: "70vh" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
