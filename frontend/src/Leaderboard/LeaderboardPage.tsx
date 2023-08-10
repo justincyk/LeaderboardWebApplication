@@ -87,11 +87,11 @@ const LeaderboardPage = () => {
         variant={"h1"}
         align={"center"}
         color={"#c026d3"}
-        sx={{ paddingTop: "5rem", fontFamily: "AtariFont", fontSize: "4rem" }}
+        sx={{ paddingTop: "3rem", fontFamily: "AtariFont", fontSize: "4rem" }}
       >
         Leaderboard
       </Typography>
-      <LeaderTable users={mockUsers} />
+      <LeaderTable users={players} />
     </Container>
   );
 };
