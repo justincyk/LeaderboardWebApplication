@@ -52,7 +52,7 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
           Add New Match
         </Typography>
         <form
-          className="input-group vertical"
+          className=""
           style={{
             display: "flex",
             flexDirection: "column",
@@ -112,6 +112,7 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
               type="button"
               sx={{ fontSize: "1.3rem", color: "white" }}
               variant={"outlined"}
+              onClick={handleAddMatchClose}
             >
               Cancel
             </Button>

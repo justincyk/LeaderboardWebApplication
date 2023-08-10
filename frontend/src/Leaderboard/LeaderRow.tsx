@@ -62,7 +62,11 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
         {columns.map((column) => {
           const value = user[column.id];
           return (
-            <TableCell key={column.id} align="center">
+            <TableCell
+              key={column.id}
+              align="center"
+              sx={{ fontFamily: "AtariFontExtraSmooth" }}
+            >
               {column.format && typeof value === "number"
                 ? column.format(value)
                 : value}
@@ -71,30 +75,89 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
         })}
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell
+          style={{
+            paddingBottom: 0,
+            paddingTop: 0,
+          }}
+          colSpan={6}
+        >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                sx={{ fontFamily: "AtariFontSmooth" }}
+              >
                 Most Recent Match History
               </Typography>
               <Table size="small" aria-label="matchHistory">
                 <TableHead>
                   <TableRow>
-                    <TableCell align={"center"}>Date</TableCell>
-                    <TableCell align={"center"}>Winner</TableCell>
-                    <TableCell align={"center"}>Loser</TableCell>
-                    <TableCell align={"center"}>Player Elo Change</TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth" }}
+                    >
+                      Date
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth" }}
+                    >
+                      Winner
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth" }}
+                    >
+                      Loser
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth" }}
+                    >
+                      Player Elo Change
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {user.history.slice(0, 3).map((historyRow) => (
                     <TableRow key={historyRow.matchId}>
-                      <TableCell align={"center"}>
+                      <TableCell
+                        align={"center"}
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8rem",
+                        }}
+                      >
                         {historyRow.matchDate}
                       </TableCell>
-                      <TableCell align="center">{historyRow.winner}</TableCell>
-                      <TableCell align="center">{historyRow.loser}</TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        {historyRow.winner}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8rem",
+                        }}
+                      >
+                        {historyRow.loser}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8rem",
+                        }}
+                      >
                         {user["nickname"] === historyRow.winner
                           ? historyRow.winnerEloChange.toFixed(3)
                           : historyRow.loserEloChange.toFixed(3)}

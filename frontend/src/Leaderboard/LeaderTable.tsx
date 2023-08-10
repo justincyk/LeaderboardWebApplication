@@ -86,9 +86,13 @@ const LeaderTable = ({ users }: LeaderListProps) => {
                   <TableCell
                     key={column.id}
                     align="center"
-                    style={{ top: 0, width: column.minWidth }}
+                    style={{
+                      top: 0,
+                      width: column.minWidth,
+                      fontFamily: "AtariFont",
+                    }}
                   >
-                    <h3>{column.label}</h3>
+                    <h2>{column.label}</h2>
                   </TableCell>
                 ))}
               </TableRow>

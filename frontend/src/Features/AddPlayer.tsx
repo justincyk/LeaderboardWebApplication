@@ -12,10 +12,10 @@ interface AddPlayerProps {
 
 const style = {
   position: "absolute" as "absolute",
-  top: "35%",
+  top: "40%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50vw",
+  width: "54vw",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -38,7 +38,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
       <Box sx={style}>
         <Typography
           id="modal-modal-title"
-          variant="h5"
+          variant="h4"
           component="h1"
           align={"center"}
           sx={{ borderBottom: 1, fontSize: "2.5rem", fontFamily: "AtariFont" }}
@@ -46,7 +46,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
           Add New Player
         </Typography>
         <form
-          className="input-group vertical"
+          className=""
           style={{
             display: "flex",
             flexDirection: "column",
@@ -54,7 +54,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
             alignItems: "flex-start",
             gap: "15px",
             paddingTop: "1.5rem",
-            paddingLeft: "2rem",
+            paddingLeft: "1.5rem",
             fontSize: "1.7rem",
             width: "100%",
           }}
@@ -123,6 +123,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               type="button"
               sx={{ fontSize: "1.3rem", color: "white" }}
               variant={"outlined"}
+              onClick={handleAddPlayerClose}
             >
               Cancel
             </Button>
