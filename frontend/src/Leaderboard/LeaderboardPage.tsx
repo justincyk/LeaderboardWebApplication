@@ -56,7 +56,6 @@ const LeaderboardPage = () => {
         setError("");
         setUsers(data);
         setPlayers(data.filter((user) => user.wins + user.loses > 0));
-        console.log(data);
       } catch (e) {
         if (e instanceof Error) {
           setError(e.message);
@@ -88,7 +87,7 @@ const LeaderboardPage = () => {
         variant={"h1"}
         align={"center"}
         color={"#c026d3"}
-        sx={{ paddingTop: "20px", fontFamily: "AtariFont", fontSize: "4rem" }}
+        sx={{ paddingTop: "5rem", fontFamily: "AtariFont", fontSize: "4rem" }}
       >
         Leaderboard
       </Typography>

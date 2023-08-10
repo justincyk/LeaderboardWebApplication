@@ -1,7 +1,7 @@
 import { User } from "../User/User.ts";
 
-const baseUrl = "http://localhost:8080";
-const url = `${baseUrl}/players/users`;
+const baseUrl = "http://localhost:8080/api";
+const url = `${baseUrl}/players`;
 
 function translateStatusToErrorMessage(status: number) {
   switch (status) {
@@ -34,13 +34,6 @@ function parseJSON(response: Response) {
   return response.json();
 }
 
-// eslint-disable-next-line
-// function delay(ms: number) {
-//   return function (x: any): Promise<any> {
-//     return new Promise((resolve) => setTimeout(() => resolve(x), ms));
-//   };
-// }
-
 function convertToUserModels(data: any[]): User[] {
   let users: User[] = data.map(convertToUserModel);
   return users;
@@ -52,14 +45,14 @@ function convertToUserModel(item: any): User {
 
 const userAPI = {
   get() {
-    return fetch(`${url}`)
+    return fetch(`${url}/users`, { headers: { "API-KEY": "pingpongapp" } })
       .then(checkStatus)
       .then(parseJSON)
       .then(convertToUserModels)
       .catch((error: TypeError) => {
         console.log("log client error " + error);
         throw new Error(
-          "There was an error retrieving the projects. Please try again.",
+          "There was an error retrieving the players. Please try again.",
         );
       });
   },

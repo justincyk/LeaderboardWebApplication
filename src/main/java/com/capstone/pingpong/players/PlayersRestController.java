@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/api")
 public class PlayersRestController {
 
     private PlayersRepository playersRepository;
