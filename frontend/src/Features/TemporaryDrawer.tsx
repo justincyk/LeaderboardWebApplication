@@ -77,7 +77,7 @@ export default function TemporaryDrawer({
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: 300 }}
+      sx={{ width: 330 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
     >
