@@ -7,7 +7,7 @@ import { MockUsers } from "../MockData/MockUsers.ts";
 import { userAPI } from "../API/userApi.ts";
 import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
 import AddPlayer from "../Features/AddPlayer.tsx";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import AddMatch from "../Features/AddMatch.tsx";
 
 const LeaderboardPage = () => {
@@ -55,7 +55,7 @@ const LeaderboardPage = () => {
         const data = await userAPI.get();
         setError("");
         setUsers(data);
-        setPlayers(data.filter((user) => user.wins + user.loses > 0));
+        setPlayers(data.filter((user) => user.wins + user.loses > 4));
       } catch (e) {
         if (e instanceof Error) {
           setError(e.message);
@@ -83,15 +83,18 @@ const LeaderboardPage = () => {
         handleAddPlayerOpen={handleAddPlayerOpen}
         handleAddMatchOpen={handleAddMatchOpen}
       />
-      <Typography
-        variant={"h1"}
-        align={"center"}
-        color={"#c026d3"}
-        sx={{ paddingTop: "3rem", fontFamily: "AtariFont", fontSize: "4rem" }}
+      <div
+        style={{
+          textAlign: "center",
+          fontFamily: "AtariFont",
+          paddingTop: "3rem",
+          fontSize: "6.8vw",
+          color: "#c026d3",
+        }}
       >
         Leaderboard
-      </Typography>
-      <LeaderTable users={players} />
+      </div>
+      <LeaderTable users={mockUsers} />
     </Container>
   );
 };

@@ -162,7 +162,13 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               name="nickname"
               placeholder="Enter Username"
               onChange={handleChange}
-              style={{ width: "100%", fontSize: "1.3rem" }}
+              style={{
+                width: "100%",
+                fontSize: "1.3rem",
+                border: "none",
+                borderRadius: "8px",
+                height: "1.5em",
+              }}
             />
             {error.nickname.length > 0 && (
               <Card>
@@ -186,7 +192,13 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               name="firstName"
               placeholder="Enter First Name"
               onChange={handleChange}
-              style={{ width: "100%", fontSize: "1.3rem" }}
+              style={{
+                width: "100%",
+                fontSize: "1.3rem",
+                border: "none",
+                borderRadius: "8px",
+                height: "1.5em",
+              }}
             />
             {error.firstName.length > 0 && (
               <Card>
@@ -210,7 +222,13 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               name="lastName"
               placeholder="Enter Last Name"
               onChange={handleChange}
-              style={{ width: "100%", fontSize: "1.3rem" }}
+              style={{
+                width: "100%",
+                fontSize: "1.3rem",
+                border: "none",
+                borderRadius: "8px",
+                height: "1.5em",
+              }}
             />
             {error.lastName.length > 0 && (
               <Card>
@@ -253,7 +271,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
                 color: "yellow",
               }}
             >
-              New players need at least 1 match to be displayed on Leaderboard
+              New players need at least 5 matches to be displayed on Leaderboard
             </div>
           </div>
         </form>

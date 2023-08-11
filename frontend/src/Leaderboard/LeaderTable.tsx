@@ -37,7 +37,7 @@ const columns: readonly Column[] = [
   },
   {
     id: "loses",
-    label: "Loses",
+    label: "Losses",
     align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
     minWidth: 75,
@@ -67,20 +67,20 @@ const LeaderTable = ({ users }: LeaderListProps) => {
       alignItems={"center"}
       sx={{
         minWidth: "70vw",
-        paddingTop: "1rem",
+        paddingTop: "2em",
         opacity: "90%",
         paddingBottom: "3rem",
       }}
     >
-      <Paper sx={{ width: "60%", border: 3 }}>
-        <TableContainer sx={{ maxHeight: "70vh" }}>
+      <Paper sx={{ width: "61%", border: 3 }}>
+        <TableContainer sx={{ maxHeight: "68vh" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell
                   align="center"
                   key="blankSpace"
-                  style={{ top: 0, width: "10px" }}
+                  style={{ top: 0 }}
                 ></TableCell>
                 {columns.map((column) => (
                   <TableCell
@@ -88,11 +88,10 @@ const LeaderTable = ({ users }: LeaderListProps) => {
                     align="center"
                     style={{
                       top: 0,
-                      width: column.minWidth,
                       fontFamily: "AtariFont",
                     }}
                   >
-                    <h2>{column.label}</h2>
+                    <h2 style={{ fontSize: "2vw" }}>{column.label}</h2>
                   </TableCell>
                 ))}
               </TableRow>

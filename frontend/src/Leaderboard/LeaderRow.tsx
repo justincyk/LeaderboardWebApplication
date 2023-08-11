@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -49,13 +48,18 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
   return (
     <React.Fragment>
       <TableRow hover role="checkbox" tabIndex={-1}>
-        <TableCell sx={{ width: "20px" }}>
+        <TableCell>
           <IconButton
             aria-label="expand row"
             size="small"
+            sx={{ width: "1vw" }}
             onClick={() => setOpen(!open)}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? (
+              <KeyboardArrowUpIcon sx={{ width: "2vw" }} />
+            ) : (
+              <KeyboardArrowDownIcon sx={{ width: "2vw" }} />
+            )}
           </IconButton>
         </TableCell>
 
@@ -65,7 +69,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
             <TableCell
               key={column.id}
               align="center"
-              sx={{ fontFamily: "AtariFontExtraSmooth" }}
+              sx={{ fontFamily: "AtariFontExtraSmooth", fontSize: "1.3vw" }}
             >
               {column.format && typeof value === "number"
                 ? column.format(value)
@@ -84,38 +88,39 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
         >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                component="div"
-                sx={{ fontFamily: "AtariFontSmooth" }}
+              <div
+                style={{
+                  fontFamily: "AtariFontSmooth",
+                  fontSize: "1.2vw",
+                  // textDecoration: "underline",
+                }}
               >
                 Most Recent Match History
-              </Typography>
+              </div>
               <Table size="small" aria-label="matchHistory">
                 <TableHead>
                   <TableRow>
                     <TableCell
                       align={"center"}
-                      sx={{ fontFamily: "AtariFontSmooth" }}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
                     >
                       Date
                     </TableCell>
                     <TableCell
                       align={"center"}
-                      sx={{ fontFamily: "AtariFontSmooth" }}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
                     >
                       Winner
                     </TableCell>
                     <TableCell
                       align={"center"}
-                      sx={{ fontFamily: "AtariFontSmooth" }}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
                     >
                       Loser
                     </TableCell>
                     <TableCell
                       align={"center"}
-                      sx={{ fontFamily: "AtariFontSmooth" }}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
                     >
                       Player Elo Change
                     </TableCell>
@@ -128,7 +133,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                         align={"center"}
                         sx={{
                           fontFamily: "AtariFontExtraSmooth",
-                          fontSize: "0.8rem",
+                          fontSize: "0.8vw",
                         }}
                       >
                         {historyRow.matchDate}
@@ -137,7 +142,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                         align="center"
                         sx={{
                           fontFamily: "AtariFontExtraSmooth",
-                          fontSize: "0.8rem",
+                          fontSize: "0.8vw",
                         }}
                       >
                         {historyRow.winner}
@@ -146,7 +151,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                         align="center"
                         sx={{
                           fontFamily: "AtariFontExtraSmooth",
-                          fontSize: "0.8rem",
+                          fontSize: "0.8vw",
                         }}
                       >
                         {historyRow.loser}
@@ -155,7 +160,7 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
                         align="center"
                         sx={{
                           fontFamily: "AtariFontExtraSmooth",
-                          fontSize: "0.8rem",
+                          fontSize: "0.8vw",
                         }}
                       >
                         {user["nickname"] === historyRow.winner

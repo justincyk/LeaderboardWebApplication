@@ -77,7 +77,7 @@ export default function TemporaryDrawer({
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 300 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
     >
@@ -85,7 +85,13 @@ export default function TemporaryDrawer({
         <ListItem
           key={"Add Player"}
           onClick={handleAddPlayerOpen}
-          sx={{ borderBottom: 1, borderTop: 1, fontFamily: "AtariFont" }}
+          sx={{
+            borderBottom: 1,
+            borderTop: 1,
+            fontFamily: "AtariFont",
+            fontSize: "1.2em",
+            minHeight: "9vh",
+          }}
         >
           <ListItemButton>
             <ListItemIcon>
@@ -98,7 +104,12 @@ export default function TemporaryDrawer({
         <ListItem
           key={"Add Match"}
           onClick={handleAddMatchOpen}
-          sx={{ borderBottom: 1, fontFamily: "AtariFont" }}
+          sx={{
+            borderBottom: 1,
+            fontFamily: "AtariFont",
+            fontSize: "1.2em",
+            minHeight: "9vh",
+          }}
         >
           <ListItemButton>
             <ListItemIcon>
@@ -126,7 +137,7 @@ export default function TemporaryDrawer({
                 top: "25px",
                 right: "25px",
                 color: "white",
-                fontSize: "1.5rem",
+                fontSize: "1.8vw",
                 fontFamily: "AtariFont",
               }}
             >
