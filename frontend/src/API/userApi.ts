@@ -1,4 +1,5 @@
 import { User } from "../User/User.ts";
+import { Player } from "../User/Player.ts";
 
 const baseUrl = "http://localhost:8080/api";
 const url = `${baseUrl}/players`;
@@ -54,6 +55,22 @@ const userAPI = {
         throw new Error(
           "There was an error retrieving the players. Please try again.",
         );
+      });
+  },
+  post(player: Player) {
+    return fetch(`${url}`, {
+      method: "POST",
+      body: JSON.stringify(player),
+      headers: {
+        "API-KEY": "pingpongapp",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .catch((error: TypeError) => {
+        console.log("log client error " + error);
+        throw new Error("There was an error with creating the player.");
       });
   },
 };

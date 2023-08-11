@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/**").permitAll()
-                ).httpBasic(Customizer.withDefaults()).addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                ).httpBasic(Customizer.withDefaults()).addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class).csrf(csrf -> csrf.disable());
 
         return http.build();
     }

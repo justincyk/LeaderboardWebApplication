@@ -1,9 +1,11 @@
 // @ts-ignore
-import React from "react";
-import { Modal } from "@mui/material";
+import React, { SyntheticEvent, useState } from "react";
+import { Card, Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Player } from "../User/Player.ts";
+import { userAPI } from "../API/userApi.ts";
 
 interface AddPlayerProps {
   openAddPlayer: boolean;
@@ -28,10 +30,95 @@ const style = {
 };
 
 const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
+  const [newPlayer, setNewPlayer] = useState<Player>({
+    id: "",
+    firstName: "",
+    lastName: "",
+    nickname: "",
+  });
+  const [error, setError] = useState({
+    nickname: "",
+    firstName: "",
+    lastName: "",
+  });
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    let updatedPlayer: Player;
+    setNewPlayer((player) => {
+      updatedPlayer = new Player({ ...player, [name]: value });
+      return updatedPlayer;
+    });
+  };
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    const validated = validate(newPlayer);
+    setError(validated);
+
+    if (
+      validated.firstName.length != 0 ||
+      validated.lastName.length != 0 ||
+      validated.nickname != 0
+    ) {
+      return;
+    }
+    userAPI
+      .post(newPlayer)
+      .then((newPlayer) => {
+        console.log(newPlayer);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setError({
+      firstName: "",
+      lastName: "",
+      nickname: "",
+    });
+    setNewPlayer({
+      id: "",
+      nickname: "",
+      firstName: "",
+      lastName: "",
+    });
+    handleAddPlayerClose();
+  };
+
+  function validate(player: Player) {
+    let error: any = { nickname: "", firstName: "", lastName: "" };
+    if (player.nickname.length === 0 || !player.nickname) {
+      error.nickname = "Username is required.";
+    } else if (!isNaN(+player.nickname.charAt(0))) {
+      error.nickname = "Username needs to start with a letter.";
+    } else {
+      error.nickname = "";
+    }
+
+    if (player.firstName.length === 0 || !player.firstName) {
+      error.firstName = "First name is required.";
+    } else if (!isNaN(+player.firstName.charAt(0))) {
+      error.firstName = "First name needs to start with a letter.";
+    } else {
+      error.firstName = "";
+    }
+
+    if (player.lastName.length === 0 || !player.lastName) {
+      error.lastName = "Last name is required.";
+    } else if (!isNaN(+player.lastName.charAt(0))) {
+      error.lastName = "Last name needs to start with a letter.";
+    } else {
+      error.lastName = "";
+    }
+    return error;
+  }
+
   return (
     <Modal
       open={openAddPlayer}
-      onClose={handleAddPlayerClose}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -41,7 +128,12 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
           variant="h4"
           component="h1"
           align={"center"}
-          sx={{ borderBottom: 1, fontSize: "2.5rem", fontFamily: "AtariFont" }}
+          sx={{
+            borderBottom: 1,
+            fontSize: "2.5rem",
+            fontFamily: "AtariFont",
+            color: "#fb7185",
+          }}
         >
           Add New Player
         </Typography>
@@ -65,15 +157,22 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
+              color: "#fb7185",
             }}
           >
-            <label htmlFor="firstName">Username</label>
+            <label htmlFor="nickname">Username</label>
             <input
               type="text"
-              name="userName"
+              name="nickname"
               placeholder="Enter Username"
+              onChange={handleChange}
               style={{ width: "100%", fontSize: "1.3rem" }}
             />
+            {error.nickname.length > 0 && (
+              <Card>
+                <Typography color={"error"}>{error.nickname}</Typography>
+              </Card>
+            )}
           </div>
 
           <div
@@ -82,6 +181,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
+              color: "#fb7185",
             }}
           >
             <label htmlFor="firstName">First Name</label>
@@ -89,8 +189,14 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               type="text"
               name="firstName"
               placeholder="Enter First Name"
+              onChange={handleChange}
               style={{ width: "100%", fontSize: "1.3rem" }}
             />
+            {error.firstName.length > 0 && (
+              <Card>
+                <Typography color={"error"}>{error.firstName}</Typography>
+              </Card>
+            )}
           </div>
 
           <div
@@ -99,6 +205,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
+              color: "#fb7185",
             }}
           >
             <label htmlFor="lastName">Last Name</label>
@@ -106,8 +213,14 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               type="text"
               name="lastName"
               placeholder="Enter Last Name"
+              onChange={handleChange}
               style={{ width: "100%", fontSize: "1.3rem" }}
             />
+            {error.lastName.length > 0 && (
+              <Card>
+                <Typography color={"error"}>{error.lastName}</Typography>
+              </Card>
+            )}
           </div>
 
           <div className="input-group">
@@ -115,6 +228,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               type="button"
               sx={{ fontSize: "1.3rem", color: "white" }}
               variant={"outlined"}
+              onClick={handleSubmit}
             >
               Save
             </Button>
@@ -123,7 +237,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               type="button"
               sx={{ fontSize: "1.3rem", color: "white" }}
               variant={"outlined"}
-              onClick={handleAddPlayerClose}
+              onClick={handleClose}
             >
               Cancel
             </Button>
