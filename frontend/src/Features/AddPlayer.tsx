@@ -14,7 +14,7 @@ interface AddPlayerProps {
 
 const style = {
   position: "absolute" as "absolute",
-  top: "40%",
+  top: "43%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "54vw",
@@ -123,20 +123,16 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h4"
-          component="h1"
-          align={"center"}
-          sx={{
-            borderBottom: 1,
+        <div
+          style={{
+            textAlign: "center",
             fontSize: "2.5rem",
+            borderBottom: "2px solid white",
             fontFamily: "AtariFont",
-            color: "#fb7185",
           }}
         >
           Add New Player
-        </Typography>
+        </div>
         <form
           className=""
           style={{
@@ -226,7 +222,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
           <div className="input-group">
             <Button
               type="button"
-              sx={{ fontSize: "1.3rem", color: "white" }}
+              sx={{
+                fontSize: "1.3rem",
+                color: "white",
+                fontFamily: "AtariFontExtraSmooth",
+              }}
               variant={"outlined"}
               onClick={handleSubmit}
             >
@@ -235,12 +235,26 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
             <span> </span>
             <Button
               type="button"
-              sx={{ fontSize: "1.3rem", color: "white" }}
+              sx={{
+                fontSize: "1.3rem",
+                color: "white",
+                fontFamily: "AtariFontExtraSmooth",
+              }}
               variant={"outlined"}
               onClick={handleClose}
             >
               Cancel
             </Button>
+            <div
+              style={{
+                textAlign: "center",
+                fontSize: "0.8rem",
+                paddingTop: "1.5rem",
+                color: "yellow",
+              }}
+            >
+              New players need at least 1 match to be displayed on Leaderboard
+            </div>
           </div>
         </form>
       </Box>

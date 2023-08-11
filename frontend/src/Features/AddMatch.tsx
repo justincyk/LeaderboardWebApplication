@@ -102,7 +102,11 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
           <div className="input-group">
             <Button
               type="button"
-              sx={{ fontSize: "1.3rem", color: "white" }}
+              sx={{
+                fontSize: "1.3rem",
+                color: "white",
+                fontFamily: "AtariFontExtraSmooth",
+              }}
               variant={"outlined"}
             >
               Save
@@ -110,7 +114,11 @@ const AddMatch = ({ openAddMatch, handleAddMatchClose }: AddMatchProps) => {
             <span> </span>
             <Button
               type="button"
-              sx={{ fontSize: "1.3rem", color: "white" }}
+              sx={{
+                fontSize: "1.3rem",
+                color: "white",
+                fontFamily: "AtariFontExtraSmooth",
+              }}
               variant={"outlined"}
               onClick={handleAddMatchClose}
             >
