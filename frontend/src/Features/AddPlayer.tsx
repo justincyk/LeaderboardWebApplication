@@ -126,9 +126,10 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
         <div
           style={{
             textAlign: "center",
-            fontSize: "2.5rem",
+            fontSize: "3.5vw",
             borderBottom: "2px solid white",
             fontFamily: "AtariFont",
+            color: "yellow",
           }}
         >
           Add New Player
@@ -156,7 +157,9 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               color: "yellow",
             }}
           >
-            <label htmlFor="nickname">Username</label>
+            <label htmlFor="nickname" style={{ fontSize: "2.6vw" }}>
+              Username
+            </label>
             <input
               type="text"
               name="nickname"
@@ -187,7 +190,9 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               color: "yellow",
             }}
           >
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName" style={{ fontSize: "2.6vw" }}>
+              First Name
+            </label>
             <input
               type="text"
               name="firstName"
@@ -218,7 +223,9 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               color: "yellow",
             }}
           >
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastName" style={{ fontSize: "2.6vw" }}>
+              Last Name
+            </label>
             <input
               type="text"
               name="lastName"
@@ -244,9 +251,10 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
             <Button
               type="button"
               sx={{
-                fontSize: "1.3rem",
-                color: "white",
+                fontSize: "1.9vw",
                 fontFamily: "AtariFontExtraSmooth",
+                // color: "yellow",
+                color: "white",
               }}
               variant={"outlined"}
               onClick={handleSubmit}
@@ -257,9 +265,10 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
             <Button
               type="button"
               sx={{
-                fontSize: "1.3rem",
-                color: "white",
+                fontSize: "1.9vw",
                 fontFamily: "AtariFontExtraSmooth",
+                // color: "yellow",
+                color: "white",
               }}
               variant={"outlined"}
               onClick={handleClose}
@@ -269,7 +278,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
             <div
               style={{
                 textAlign: "center",
-                fontSize: "0.8rem",
+                fontSize: "1.2vw",
                 paddingTop: "1.5rem",
                 color: "yellow",
               }}
