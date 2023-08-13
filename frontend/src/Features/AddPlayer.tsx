@@ -153,7 +153,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
-              color: "#fb7185",
+              color: "yellow",
             }}
           >
             <label htmlFor="nickname">Username</label>
@@ -164,10 +164,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               onChange={handleChange}
               style={{
                 width: "100%",
-                fontSize: "1.3rem",
+                fontSize: "1.5vw",
                 border: "none",
                 borderRadius: "8px",
-                height: "1.5em",
+                height: "4.5vh",
+                fontFamily: "AtariFontSmooth",
               }}
             />
             {error.nickname.length > 0 && (
@@ -183,7 +184,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
-              color: "#fb7185",
+              color: "yellow",
             }}
           >
             <label htmlFor="firstName">First Name</label>
@@ -194,10 +195,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               onChange={handleChange}
               style={{
                 width: "100%",
-                fontSize: "1.3rem",
+                fontSize: "1.5vw",
                 border: "none",
                 borderRadius: "8px",
-                height: "1.5em",
+                height: "4.5vh",
+                fontFamily: "AtariFontSmooth",
               }}
             />
             {error.firstName.length > 0 && (
@@ -213,7 +215,7 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               flexDirection: "column",
               gap: "0.2rem",
               width: "50%",
-              color: "#fb7185",
+              color: "yellow",
             }}
           >
             <label htmlFor="lastName">Last Name</label>
@@ -224,10 +226,11 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
               onChange={handleChange}
               style={{
                 width: "100%",
-                fontSize: "1.3rem",
+                fontSize: "1.5vw",
                 border: "none",
                 borderRadius: "8px",
-                height: "1.5em",
+                height: "4.5vh",
+                fontFamily: "AtariFontSmooth",
               }}
             />
             {error.lastName.length > 0 && (

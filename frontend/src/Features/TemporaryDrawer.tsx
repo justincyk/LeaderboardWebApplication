@@ -77,7 +77,7 @@ export default function TemporaryDrawer({
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: 330 }}
+      sx={{ width: "auto" }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
     >
@@ -89,7 +89,7 @@ export default function TemporaryDrawer({
             borderBottom: 1,
             borderTop: 1,
             fontFamily: "AtariFont",
-            fontSize: "1.2em",
+            fontSize: "1.5vw",
             minHeight: "9vh",
           }}
         >
@@ -107,7 +107,7 @@ export default function TemporaryDrawer({
           sx={{
             borderBottom: 1,
             fontFamily: "AtariFont",
-            fontSize: "1.2em",
+            fontSize: "1.5vw",
             minHeight: "9vh",
           }}
         >
