@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import ImageIcon from "@mui/icons-material/Image";
 import { User } from "../User/User.ts";
 import TableRow from "@mui/material/TableRow";
@@ -45,6 +45,8 @@ interface LeaderPlayerProp {
 
 const LeaderRow = ({ user }: LeaderPlayerProp) => {
   const [open, setOpen] = useState(false);
+  useEffect(() => {}, [user]);
+
   return (
     <React.Fragment>
       <TableRow hover role="checkbox" tabIndex={-1}>

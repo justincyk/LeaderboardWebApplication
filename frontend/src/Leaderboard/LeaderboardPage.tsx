@@ -9,6 +9,9 @@ import TemporaryDrawer from "../Features/TemporaryDrawer.tsx";
 import AddPlayer from "../Features/AddPlayer.tsx";
 // import Typography from "@mui/material/Typography";
 import AddMatch from "../Features/AddMatch.tsx";
+import { Matches } from "../User/Matches.ts";
+import { matchAPI } from "../API/matchApi.ts";
+import { Player } from "../User/Player.ts";
 
 const LeaderboardPage = () => {
   const containerStyle: React.CSSProperties = {
@@ -30,6 +33,51 @@ const LeaderboardPage = () => {
   // @ts-ignore
   const [loading, setLoading] = useState(false);
 
+  // @ts-ignore
+  const [newMatchLoading, setNewMatchLoading] = useState<Boolean>(false);
+  // @ts-ignore
+  const [addNewPlayerLoading, setNewPlayerLoading] = useState<Boolean>(false);
+
+  async function addNewPlayer(newPlayer: Player) {
+    await userAPI
+      .post(newPlayer)
+      .then((newPlayer) => {
+        console.log(newPlayer);
+        setNewPlayerLoading(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    const newUsers = await userAPI.get();
+    setUsers(newUsers);
+    setPlayers(
+      newUsers.filter((user) => {
+        return user.wins + user.loses >= 5;
+      }),
+    );
+    setNewPlayerLoading(false);
+  }
+
+  async function addNewMatch(newAddMatch: Matches) {
+    await matchAPI
+      .post(newAddMatch)
+      .then((newAddMatch) => {
+        console.log(newAddMatch);
+        setNewMatchLoading(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    const newUsers = await userAPI.get();
+    setUsers(newUsers);
+    setPlayers(
+      newUsers.filter((user) => {
+        return user.wins + user.loses >= 5;
+      }),
+    );
+    setNewMatchLoading(false);
+  }
+
   const [openAddPlayer, setOpenAddPlayer] = useState<boolean>(false);
   const handleAddPlayerClose = () => {
     setOpenAddPlayer(false);
@@ -50,6 +98,8 @@ const LeaderboardPage = () => {
   const [error, setError] = useState<string | undefined>(undefined);
   useEffect(() => {
     async function loadUsers() {
+      setNewMatchLoading(false);
+      setNewPlayerLoading(false);
       setLoading(true);
       try {
         const data = await userAPI.get();
@@ -73,12 +123,14 @@ const LeaderboardPage = () => {
       <AddPlayer
         openAddPlayer={openAddPlayer}
         handleAddPlayerClose={handleAddPlayerClose}
-        users={mockUsers}
+        users={users}
+        addNewPlayer={addNewPlayer}
       />
       <AddMatch
         openAddMatch={openAddMatch}
         handleAddMatchClose={handleAddMatchClose}
-        users={mockUsers}
+        users={users}
+        addNewMatch={addNewMatch}
       />
       <TemporaryDrawer
         openAddPlayer={openAddPlayer}
@@ -96,7 +148,7 @@ const LeaderboardPage = () => {
       >
         Leaderboard
       </div>
-      <LeaderTable users={mockUsers} />
+      <LeaderTable users={players} />
     </Container>
   );
 };

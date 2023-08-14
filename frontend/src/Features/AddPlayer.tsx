@@ -1,17 +1,17 @@
 // @ts-ignore
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Card, Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Player } from "../User/Player.ts";
-import { userAPI } from "../API/userApi.ts";
 import { User } from "../User/User.ts";
 
 interface AddPlayerProps {
   openAddPlayer: boolean;
   handleAddPlayerClose: () => void;
   users: User[];
+  addNewPlayer: (player: Player) => void;
 }
 
 const style = {
@@ -35,6 +35,7 @@ const AddPlayer = ({
   openAddPlayer,
   handleAddPlayerClose,
   users,
+  addNewPlayer,
 }: AddPlayerProps) => {
   const [newPlayer, setNewPlayer] = useState<Player>({
     id: "",
@@ -47,6 +48,7 @@ const AddPlayer = ({
     firstName: "",
     lastName: "",
   });
+  useEffect(() => {}, [users]);
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     let updatedPlayer: Player;
@@ -67,14 +69,7 @@ const AddPlayer = ({
     ) {
       return;
     }
-    userAPI
-      .post(newPlayer)
-      .then((newPlayer) => {
-        console.log(newPlayer);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    addNewPlayer(newPlayer);
     handleClose();
   };
 

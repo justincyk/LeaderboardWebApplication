@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Card, Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,6 +13,7 @@ interface AddMatchProps {
   openAddMatch: boolean;
   handleAddMatchClose: () => void;
   users: User[];
+  addNewMatch: (match: Matches) => void;
 }
 
 const style = {
@@ -36,6 +37,7 @@ const AddMatch = ({
   openAddMatch,
   handleAddMatchClose,
   users,
+  addNewMatch,
 }: AddMatchProps) => {
   const [newMatch, setNewMatch] = useState<Matches>({
     id: 0,
@@ -47,17 +49,34 @@ const AddMatch = ({
     winner: "",
     loser: "",
   });
-  const [nicknames] = useState<String[]>(
+  const [nicknames, setNicknames] = useState<String[]>(
     users.map((user) => {
       return user.nickname;
     }),
   );
-  const handleChange = (event: any) => {
-    const { id, value } = event.target;
-    let name = id;
+
+  useEffect(() => {
+    handleUsersChange();
+  }, [users]);
+
+  const handleUsersChange = () => {
+    setNicknames(
+      users.map((user) => {
+        return user.nickname;
+      }),
+    );
+  };
+
+  const handleChange = (event: any, selected: string) => {
+    const { id } = event.target;
+    let name = id.toString().toLowerCase();
     let updatedMatch: Matches;
     setNewMatch((match) => {
-      updatedMatch = new Matches({ ...match, [name]: value });
+      if (name.includes("winner")) {
+        updatedMatch = new Matches({ ...match, winner: selected });
+      } else if (name.includes("loser")) {
+        updatedMatch = new Matches({ ...match, loser: selected });
+      }
       return updatedMatch;
     });
   };
@@ -69,6 +88,8 @@ const AddMatch = ({
     if (validated.winner.length != 0 || validated.loser.length != 0) {
       return;
     }
+
+    addNewMatch(newMatch);
     handleClose();
   };
 
@@ -190,8 +211,8 @@ const AddMatch = ({
               id="winner"
               freeSolo
               options={nicknames}
-              onInputChange={(event: any) => {
-                handleChange(event);
+              onInputChange={(event: any, value) => {
+                handleChange(event, value);
               }}
               sx={{
                 width: "100%",
@@ -248,8 +269,8 @@ const AddMatch = ({
               id="loser"
               freeSolo
               options={nicknames}
-              onInputChange={(event: any) => {
-                handleChange(event);
+              onInputChange={(event: any, value) => {
+                handleChange(event, value);
               }}
               sx={{
                 width: "100%",

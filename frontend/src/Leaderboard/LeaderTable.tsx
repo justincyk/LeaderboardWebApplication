@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { User } from "../User/User.ts";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -47,6 +47,8 @@ const columns: readonly Column[] = [
 const LeaderTable = ({ users }: LeaderListProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  useEffect(() => {}, [users]);
 
   // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {

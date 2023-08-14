@@ -9,9 +9,9 @@ function translateStatusToErrorMessage(status: number) {
     case 401:
       return "Please login again.";
     case 403:
-      return "You do not have permission to view the project(s).";
+      return "You do not have permission to view the player(s).";
     default:
-      return "There was an error retrieving the project(s). Please try again.";
+      return "There was an error retrieving the player(s). Please try again.";
   }
 }
 
