@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'AtariFont';
+    src: url('../public/fonts/AtariClassic-gry3.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AtariFontSmooth';
+    src: url('../public/fonts/AtariClassicSmooth-XzW2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AtariFontExtraSmooth';
+    src: url('../public/fonts/AtariClassicExtrasmooth-LxZy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

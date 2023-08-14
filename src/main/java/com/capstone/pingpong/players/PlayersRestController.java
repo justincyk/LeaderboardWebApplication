@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/api")
 public class PlayersRestController {
 
     private PlayersRepository playersRepository;
@@ -50,9 +51,9 @@ public class PlayersRestController {
 
     @PostMapping("/players")
     public Players createPlayer(@RequestBody Players players) {
-        players.setNickname(players.getNickname().toLowerCase());
-        players.setFirstName(players.getFirstName().toLowerCase());
-        players.setLastName(players.getLastName().toLowerCase());
+        players.setNickname(players.getNickname().substring(0, 1).toUpperCase() + players.getNickname().substring(1).toLowerCase());
+        players.setFirstName(players.getFirstName().substring(0, 1).toUpperCase() + players.getFirstName().substring(1).toLowerCase());
+        players.setLastName(players.getLastName().substring(0, 1).toUpperCase() + players.getLastName().substring(1).toLowerCase());
         if (playersRepository.findByNickname(players.getNickname()).isPresent()) {
             throw new RuntimeException("Player with that nickname already exists - " + players.getNickname());
         }

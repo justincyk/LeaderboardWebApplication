@@ -1,17 +1,16 @@
-import { User } from "../User/User.ts";
-import { Player } from "../User/Player.ts";
+import { Matches } from "../User/Matches.ts";
 
 const baseUrl = "http://localhost:8080/api";
-const url = `${baseUrl}/players`;
+const url = `${baseUrl}/matches`;
 
 function translateStatusToErrorMessage(status: number) {
   switch (status) {
     case 401:
       return "Please login again.";
     case 403:
-      return "You do not have permission to view the player(s).";
+      return "You do not have permission to view the match(es).";
     default:
-      return "There was an error retrieving the player(s). Please try again.";
+      return "There was an error retrieving the match(es). Please try again.";
   }
 }
 
@@ -35,21 +34,21 @@ function parseJSON(response: Response) {
   return response.json();
 }
 
-function convertToUserModels(data: any[]): User[] {
-  let users: User[] = data.map(convertToUserModel);
-  return users;
+function convertToMatchModels(data: any[]): Matches[] {
+  let matches: Matches[] = data.map(convertToMatchModel);
+  return matches;
 }
 
-function convertToUserModel(item: any): User {
-  return new User(item);
+function convertToMatchModel(item: any): Matches {
+  return new Matches(item);
 }
 
-const userAPI = {
+const matchAPI = {
   get() {
     return fetch(`${url}/users`, { headers: { "API-KEY": "pingpongapp" } })
       .then(checkStatus)
       .then(parseJSON)
-      .then(convertToUserModels)
+      .then(convertToMatchModels)
       .catch((error: TypeError) => {
         console.log("log client error " + error);
         throw new Error(
@@ -57,10 +56,10 @@ const userAPI = {
         );
       });
   },
-  post(player: Player) {
+  post(match: Matches) {
     return fetch(`${url}`, {
       method: "POST",
-      body: JSON.stringify(player),
+      body: JSON.stringify(match),
       headers: {
         "API-KEY": "pingpongapp",
         "Content-Type": "application/json",
@@ -70,9 +69,9 @@ const userAPI = {
       .then(parseJSON)
       .catch((error: TypeError) => {
         console.log("log client error " + error);
-        throw new Error("There was an error with creating the player.");
+        throw new Error("There was an error with adding new match.");
       });
   },
 };
 
-export { userAPI };
+export { matchAPI };

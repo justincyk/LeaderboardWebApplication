@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import ImageIcon from "@mui/icons-material/Image";
 import { User } from "../User/User.ts";
 import TableRow from "@mui/material/TableRow";
@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -46,23 +45,34 @@ interface LeaderPlayerProp {
 
 const LeaderRow = ({ user }: LeaderPlayerProp) => {
   const [open, setOpen] = useState(false);
+  useEffect(() => {}, [user]);
+
   return (
     <React.Fragment>
       <TableRow hover role="checkbox" tabIndex={-1}>
-        <TableCell sx={{ width: "20px" }}>
+        <TableCell>
           <IconButton
             aria-label="expand row"
             size="small"
+            sx={{ width: "1vw" }}
             onClick={() => setOpen(!open)}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? (
+              <KeyboardArrowUpIcon sx={{ width: "2vw" }} />
+            ) : (
+              <KeyboardArrowDownIcon sx={{ width: "2vw" }} />
+            )}
           </IconButton>
         </TableCell>
 
         {columns.map((column) => {
           const value = user[column.id];
           return (
-            <TableCell key={column.id} align="center">
+            <TableCell
+              key={column.id}
+              align="center"
+              sx={{ fontFamily: "AtariFontExtraSmooth", fontSize: "1.3vw" }}
+            >
               {column.format && typeof value === "number"
                 ? column.format(value)
                 : value}
@@ -71,30 +81,90 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
         })}
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell
+          style={{
+            paddingBottom: 0,
+            paddingTop: 0,
+          }}
+          colSpan={6}
+        >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
+              <div
+                style={{
+                  fontFamily: "AtariFontSmooth",
+                  fontSize: "1.2vw",
+                  // textDecoration: "underline",
+                }}
+              >
                 Most Recent Match History
-              </Typography>
+              </div>
               <Table size="small" aria-label="matchHistory">
                 <TableHead>
                   <TableRow>
-                    <TableCell align={"center"}>Date</TableCell>
-                    <TableCell align={"center"}>Winner</TableCell>
-                    <TableCell align={"center"}>Loser</TableCell>
-                    <TableCell align={"center"}>Player Elo Change</TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
+                    >
+                      Date
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
+                    >
+                      Winner
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
+                    >
+                      Loser
+                    </TableCell>
+                    <TableCell
+                      align={"center"}
+                      sx={{ fontFamily: "AtariFontSmooth", fontSize: "1vw" }}
+                    >
+                      Player Elo Change
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {user.history.slice(0, 3).map((historyRow) => (
                     <TableRow key={historyRow.matchId}>
-                      <TableCell align={"center"}>
+                      <TableCell
+                        align={"center"}
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8vw",
+                        }}
+                      >
                         {historyRow.matchDate}
                       </TableCell>
-                      <TableCell align="center">{historyRow.winner}</TableCell>
-                      <TableCell align="center">{historyRow.loser}</TableCell>
-                      <TableCell align="center">
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8vw",
+                        }}
+                      >
+                        {historyRow.winner}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8vw",
+                        }}
+                      >
+                        {historyRow.loser}
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          fontFamily: "AtariFontExtraSmooth",
+                          fontSize: "0.8vw",
+                        }}
+                      >
                         {user["nickname"] === historyRow.winner
                           ? historyRow.winnerEloChange.toFixed(3)
                           : historyRow.loserEloChange.toFixed(3)}

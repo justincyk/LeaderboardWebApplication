@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { User } from "../User/User.ts";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -37,26 +37,18 @@ const columns: readonly Column[] = [
   },
   {
     id: "loses",
-    label: "Loses",
+    label: "Losses",
     align: "center",
     format: (value: number) => value.toLocaleString("en-US"),
     minWidth: 75,
   },
 ];
-//
-// interface Data {
-//   rank: number;
-//   name: string;
-//   wins: number;
-//   loses: number;
-// }
 
 const LeaderTable = ({ users }: LeaderListProps) => {
-  // const items: any = users.map((user, index: number) => {
-  //   return <LeaderRow user={user} rank={index + 1} key={user.id} />;
-  // });
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  useEffect(() => {}, [users]);
 
   // @ts-ignore
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -73,32 +65,35 @@ const LeaderTable = ({ users }: LeaderListProps) => {
     <Box
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"center"}
+      justifyContent={"flex-start"}
       alignItems={"center"}
-      sx={{ minWidth: "70vw", paddingTop: "20px" }}
+      sx={{
+        minWidth: "70vw",
+        paddingTop: "2em",
+        opacity: "90%",
+        paddingBottom: "3rem",
+      }}
     >
-      <Paper sx={{ width: "50%" }}>
-        <TableContainer sx={{ maxHeight: 720 }}>
+      <Paper sx={{ width: "61%", border: 3 }}>
+        <TableContainer sx={{ maxHeight: "68vh" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
-              <TableRow>
-                <TableCell align="center" colSpan={12}>
-                  <h1>Leaderboard</h1>
-                </TableCell>
-              </TableRow>
               <TableRow>
                 <TableCell
                   align="center"
                   key="blankSpace"
-                  style={{ top: 57, width: "10px" }}
+                  style={{ top: 0 }}
                 ></TableCell>
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align="center"
-                    style={{ top: 57, width: column.minWidth }}
+                    style={{
+                      top: 0,
+                      fontFamily: "AtariFont",
+                    }}
                   >
-                    <h3>{column.label}</h3>
+                    <h2 style={{ fontSize: "2vw" }}>{column.label}</h2>
                   </TableCell>
                 ))}
               </TableRow>
