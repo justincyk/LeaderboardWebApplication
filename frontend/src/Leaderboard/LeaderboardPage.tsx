@@ -73,6 +73,7 @@ const LeaderboardPage = () => {
       <AddPlayer
         openAddPlayer={openAddPlayer}
         handleAddPlayerClose={handleAddPlayerClose}
+        users={mockUsers}
       />
       <AddMatch
         openAddMatch={openAddMatch}

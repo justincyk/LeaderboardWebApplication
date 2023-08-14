@@ -6,10 +6,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Player } from "../User/Player.ts";
 import { userAPI } from "../API/userApi.ts";
+import { User } from "../User/User.ts";
 
 interface AddPlayerProps {
   openAddPlayer: boolean;
   handleAddPlayerClose: () => void;
+  users: User[];
 }
 
 const style = {
@@ -29,7 +31,11 @@ const style = {
   fontFamily: "AtariFont",
 };
 
-const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
+const AddPlayer = ({
+  openAddPlayer,
+  handleAddPlayerClose,
+  users,
+}: AddPlayerProps) => {
   const [newPlayer, setNewPlayer] = useState<Player>({
     id: "",
     firstName: "",
@@ -93,6 +99,15 @@ const AddPlayer = ({ openAddPlayer, handleAddPlayerClose }: AddPlayerProps) => {
       error.nickname = "Username is required.";
     } else if (!isNaN(+player.nickname.charAt(0))) {
       error.nickname = "Username needs to start with a letter.";
+    } else if (
+      users.findIndex((user) => {
+        return (
+          user.nickname.toString().toLowerCase() ==
+          player.nickname.toString().toLowerCase()
+        );
+      }) != -1
+    ) {
+      error.nickname = "Username is already taken.";
     } else {
       error.nickname = "";
     }
