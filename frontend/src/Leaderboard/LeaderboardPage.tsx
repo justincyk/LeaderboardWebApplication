@@ -12,6 +12,7 @@ import AddMatch from "../Features/AddMatch.tsx";
 import { Matches } from "../User/Matches.ts";
 import { matchAPI } from "../API/matchApi.ts";
 import { Player } from "../User/Player.ts";
+import UserBio from "../Features/UserBio.tsx";
 
 const LeaderboardPage = () => {
   const containerStyle: React.CSSProperties = {
@@ -37,6 +38,12 @@ const LeaderboardPage = () => {
   const [newMatchLoading, setNewMatchLoading] = useState<Boolean>(false);
   // @ts-ignore
   const [addNewPlayerLoading, setNewPlayerLoading] = useState<Boolean>(false);
+
+  const [openAddPlayer, setOpenAddPlayer] = useState<boolean>(false);
+
+  const [openAddMatch, setOpenAddMatch] = useState<boolean>(false);
+
+  const [openUserBio, setOpenUserBio] = useState<boolean>(false);
 
   async function addNewPlayer(newPlayer: Player) {
     await userAPI
@@ -78,7 +85,6 @@ const LeaderboardPage = () => {
     setNewMatchLoading(false);
   }
 
-  const [openAddPlayer, setOpenAddPlayer] = useState<boolean>(false);
   const handleAddPlayerClose = () => {
     setOpenAddPlayer(false);
   };
@@ -86,12 +92,19 @@ const LeaderboardPage = () => {
     setOpenAddPlayer(true);
   };
 
-  const [openAddMatch, setOpenAddMatch] = useState<boolean>(false);
   const handleAddMatchClose = () => {
     setOpenAddMatch(false);
   };
   const handleAddMatchOpen = () => {
     setOpenAddMatch(true);
+  };
+
+  const handleUserBioOpen = () => {
+    setOpenUserBio(true);
+  };
+
+  const handleUserBioClose = () => {
+    setOpenUserBio(false);
   };
 
   // @ts-ignore
@@ -132,6 +145,11 @@ const LeaderboardPage = () => {
         users={users}
         addNewMatch={addNewMatch}
       />
+      <UserBio
+        openUserBio={openUserBio}
+        handleUserBioClose={handleUserBioClose}
+        users={users}
+      />
       <TemporaryDrawer
         openAddPlayer={openAddPlayer}
         handleAddPlayerOpen={handleAddPlayerOpen}
@@ -148,7 +166,7 @@ const LeaderboardPage = () => {
       >
         Leaderboard
       </div>
-      <LeaderTable users={players} />
+      <LeaderTable users={players} handleUserBioOpen={handleUserBioOpen} />
     </Container>
   );
 };

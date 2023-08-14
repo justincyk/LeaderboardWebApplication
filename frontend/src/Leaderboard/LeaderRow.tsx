@@ -41,9 +41,10 @@ const columns: readonly Column[] = [
 
 interface LeaderPlayerProp {
   user: User;
+  handleUserBioOpen: () => void;
 }
 
-const LeaderRow = ({ user }: LeaderPlayerProp) => {
+const LeaderRow = ({ user, handleUserBioOpen }: LeaderPlayerProp) => {
   const [open, setOpen] = useState(false);
   useEffect(() => {}, [user]);
 
@@ -71,7 +72,12 @@ const LeaderRow = ({ user }: LeaderPlayerProp) => {
             <TableCell
               key={column.id}
               align="center"
-              sx={{ fontFamily: "AtariFontExtraSmooth", fontSize: "1.3vw" }}
+              sx={{
+                fontFamily: "AtariFontExtraSmooth",
+                fontSize: "1.3vw",
+                cursor: "pointer",
+              }}
+              onClick={() => handleUserBioOpen()}
             >
               {column.format && typeof value === "number"
                 ? column.format(value)

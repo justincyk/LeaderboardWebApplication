@@ -15,6 +15,7 @@ import LeaderRow from "./LeaderRow.tsx";
 
 interface LeaderListProps {
   users: User[];
+  handleUserBioOpen: () => void;
 }
 
 interface Column {
@@ -44,7 +45,7 @@ const columns: readonly Column[] = [
   },
 ];
 
-const LeaderTable = ({ users }: LeaderListProps) => {
+const LeaderTable = ({ users, handleUserBioOpen }: LeaderListProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -103,7 +104,11 @@ const LeaderTable = ({ users }: LeaderListProps) => {
                 .filter((user) => user.wins + user.loses != 0)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((user) => (
-                  <LeaderRow user={user} key={user.id} />
+                  <LeaderRow
+                    user={user}
+                    key={user.id}
+                    handleUserBioOpen={handleUserBioOpen}
+                  />
                 ))}
             </TableBody>
           </Table>
