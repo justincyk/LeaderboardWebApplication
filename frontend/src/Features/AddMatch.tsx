@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Matches } from "../User/Matches.ts";
 import { User } from "../User/User.ts";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 interface AddMatchProps {
   openAddMatch: boolean;
@@ -45,8 +47,14 @@ const AddMatch = ({
     winner: "",
     loser: "",
   });
+  const [nicknames] = useState<String[]>(
+    users.map((user) => {
+      return user.nickname;
+    }),
+  );
   const handleChange = (event: any) => {
-    const { name, value } = event.target;
+    const { id, value } = event.target;
+    let name = id;
     let updatedMatch: Matches;
     setNewMatch((match) => {
       updatedMatch = new Matches({ ...match, [name]: value });
@@ -61,6 +69,7 @@ const AddMatch = ({
     if (validated.winner.length != 0 || validated.loser.length != 0) {
       return;
     }
+    handleClose();
   };
 
   const handleClose = () => {
@@ -107,6 +116,11 @@ const AddMatch = ({
       error.loser = "Player does not exist.";
     } else {
       error.loser = "";
+    }
+
+    if (match.loser == match.winner) {
+      error.loser = "Winner and Loser cannot be the same.";
+      error.winner = "Winner and Loser cannot be the same.";
     }
     return error;
   }
@@ -158,19 +172,42 @@ const AddMatch = ({
             >
               Winner
             </label>
-            <input
-              type="text"
-              name="winner"
-              placeholder="Enter Winner"
-              onChange={handleChange}
-              style={{
-                width: "100%",
-                fontSize: "1.5vw",
-                border: "none",
-                borderRadius: "8px",
-                height: "4.5vh",
-                fontFamily: "AtariFontSmooth",
+            {/*<input*/}
+            {/*  type="text"*/}
+            {/*  name="winner"*/}
+            {/*  placeholder="Enter Winner"*/}
+            {/*  onChange={handleChange}*/}
+            {/*  style={{*/}
+            {/*    width: "100%",*/}
+            {/*    fontSize: "1.5vw",*/}
+            {/*    border: "none",*/}
+            {/*    borderRadius: "8px",*/}
+            {/*    height: "4.5vh",*/}
+            {/*    fontFamily: "AtariFontSmooth",*/}
+            {/*  }}*/}
+            {/*/>*/}
+            <Autocomplete
+              id="winner"
+              freeSolo
+              options={nicknames}
+              onInputChange={(event: any) => {
+                handleChange(event);
               }}
+              sx={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "8px",
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={"Enter Winner"}
+                  inputProps={{
+                    ...params.inputProps,
+                    style: { fontSize: "1.5vw", fontFamily: "AtariFontSmooth" },
+                  }}
+                />
+              )}
             />
             {error.winner.length > 0 && (
               <Card>
@@ -193,19 +230,42 @@ const AddMatch = ({
             >
               Loser
             </label>
-            <input
-              type="text"
-              name="loser"
-              placeholder="Enter Loser"
-              onChange={handleChange}
-              style={{
-                width: "100%",
-                fontSize: "1.5vw",
-                border: "none",
-                borderRadius: "8px",
-                height: "4.5vh",
-                fontFamily: "AtariFontSmooth",
+            {/*<input*/}
+            {/*  type="text"*/}
+            {/*  name="loser"*/}
+            {/*  placeholder="Enter Loser"*/}
+            {/*  onChange={handleChange}*/}
+            {/*  style={{*/}
+            {/*    width: "100%",*/}
+            {/*    fontSize: "1.5vw",*/}
+            {/*    border: "none",*/}
+            {/*    borderRadius: "8px",*/}
+            {/*    height: "4.5vh",*/}
+            {/*    fontFamily: "AtariFontSmooth",*/}
+            {/*  }}*/}
+            {/*/>*/}
+            <Autocomplete
+              id="loser"
+              freeSolo
+              options={nicknames}
+              onInputChange={(event: any) => {
+                handleChange(event);
               }}
+              sx={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "8px",
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label={"Enter Loser"}
+                  inputProps={{
+                    ...params.inputProps,
+                    style: { fontSize: "1.5vw", fontFamily: "AtariFontSmooth" },
+                  }}
+                />
+              )}
             />
             {error.loser.length > 0 && (
               <Card>
