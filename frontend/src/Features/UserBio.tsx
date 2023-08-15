@@ -153,7 +153,7 @@ const UserBio = ({
               fontFamily: "AtariFontExtraSmooth",
               fontSize: "0.6vw",
               background: "rgba(204, 204, 204, 0.5)",
-              opacity: "80%",
+              opacity: "90%",
               color: "yellow",
             }}
           >
