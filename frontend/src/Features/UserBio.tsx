@@ -184,7 +184,7 @@ const UserBio = ({
             color: "yellow",
           }}
         >
-          Player
+          Player Bio
         </div>
         <div
           style={{
