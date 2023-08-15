@@ -45,6 +45,7 @@ const LeaderboardPage = () => {
 
   const [openUserBio, setOpenUserBio] = useState<boolean>(false);
 
+  const [selectedPlayer, setSelectedPlayer] = useState<User>();
   async function addNewPlayer(newPlayer: Player) {
     await userAPI
       .post(newPlayer)
@@ -99,7 +100,8 @@ const LeaderboardPage = () => {
     setOpenAddMatch(true);
   };
 
-  const handleUserBioOpen = () => {
+  const handleUserBioOpen = (user: User) => {
+    setSelectedPlayer(user);
     setOpenUserBio(true);
   };
 
@@ -148,7 +150,7 @@ const LeaderboardPage = () => {
       <UserBio
         openUserBio={openUserBio}
         handleUserBioClose={handleUserBioClose}
-        users={users}
+        selectedPlayer={selectedPlayer}
       />
       <TemporaryDrawer
         openAddPlayer={openAddPlayer}

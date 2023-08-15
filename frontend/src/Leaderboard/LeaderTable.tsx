@@ -15,7 +15,7 @@ import LeaderRow from "./LeaderRow.tsx";
 
 interface LeaderListProps {
   users: User[];
-  handleUserBioOpen: () => void;
+  handleUserBioOpen: (user: User) => void;
 }
 
 interface Column {

@@ -103,6 +103,8 @@ const AddPlayer = ({
       }) != -1
     ) {
       error.nickname = "Username is already taken.";
+    } else if (player.nickname.length > 20) {
+      error.nickname = "Nickname is too long.";
     } else {
       error.nickname = "";
     }
@@ -111,6 +113,8 @@ const AddPlayer = ({
       error.firstName = "First name is required.";
     } else if (!isNaN(+player.firstName.charAt(0))) {
       error.firstName = "First name needs to start with a letter.";
+    } else if (player.firstName.length > 25) {
+      error.firstName = "First name is too long.";
     } else {
       error.firstName = "";
     }
@@ -119,6 +123,8 @@ const AddPlayer = ({
       error.lastName = "Last name is required.";
     } else if (!isNaN(+player.lastName.charAt(0))) {
       error.lastName = "Last name needs to start with a letter.";
+    } else if (player.lastName.length > 25) {
+      error.lastName = "Last name is too long.";
     } else {
       error.lastName = "";
     }

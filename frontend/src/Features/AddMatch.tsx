@@ -225,7 +225,7 @@ const AddMatch = ({
                   label={"Enter Winner"}
                   inputProps={{
                     ...params.inputProps,
-                    style: { fontSize: "1.5vw", fontFamily: "AtariFontSmooth" },
+                    style: { fontSize: "1.3vw", fontFamily: "AtariFontSmooth" },
                   }}
                 />
               )}

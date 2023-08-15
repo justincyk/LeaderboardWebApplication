@@ -41,7 +41,7 @@ const columns: readonly Column[] = [
 
 interface LeaderPlayerProp {
   user: User;
-  handleUserBioOpen: () => void;
+  handleUserBioOpen: (user: User) => void;
 }
 
 const LeaderRow = ({ user, handleUserBioOpen }: LeaderPlayerProp) => {
@@ -77,7 +77,7 @@ const LeaderRow = ({ user, handleUserBioOpen }: LeaderPlayerProp) => {
                 fontSize: "1.3vw",
                 cursor: "pointer",
               }}
-              onClick={() => handleUserBioOpen()}
+              onClick={() => handleUserBioOpen(user)}
             >
               {column.format && typeof value === "number"
                 ? column.format(value)
