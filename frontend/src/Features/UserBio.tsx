@@ -157,7 +157,10 @@ const UserBio = ({
               color: "yellow",
             }}
           >
-            {row[column.dataKey]}
+            {column.dataKey === "winnerEloChange" ||
+            column.dataKey === "loserEloChange"
+              ? row[column.dataKey].toFixed(3)
+              : row[column.dataKey]}
           </TableCell>
         ))}
       </React.Fragment>
